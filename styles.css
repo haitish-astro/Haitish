@@ -1,0 +1,542 @@
+:root {
+  color-scheme: light;
+  --ink: #182021;
+  --muted: #5d696a;
+  --line: #d9e0de;
+  --paper: #f7f8f4;
+  --white: #ffffff;
+  --steel: #263235;
+  --cyan: #1d9bb2;
+  --amber: #c9822e;
+  --green: #4f7b5a;
+  --shadow: 0 18px 45px rgba(24, 32, 33, 0.13);
+  --max-width: 1160px;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 20;
+  padding: 0.75rem 1rem;
+  background: var(--ink);
+  color: var(--white);
+  border-radius: 6px;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid rgba(217, 224, 222, 0.85);
+  background: rgba(247, 248, 244, 0.94);
+  backdrop-filter: blur(16px);
+}
+
+.nav-shell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(100% - 2rem, var(--max-width));
+  min-height: 76px;
+  margin: 0 auto;
+  gap: 1rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.brand-mark {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 0.9rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nav-links a {
+  min-height: 40px;
+  padding: 0.55rem 0.8rem;
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible,
+.nav-links a[aria-current="page"] {
+  background: rgba(29, 155, 178, 0.1);
+  color: var(--ink);
+}
+
+.nav-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--white);
+  cursor: pointer;
+}
+
+.nav-toggle-line {
+  display: block;
+  width: 18px;
+  height: 2px;
+  margin: 3px 0;
+  background: var(--ink);
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: clamp(560px, 78svh, 780px);
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(8, 13, 15, 0.94) 0%, rgba(8, 13, 15, 0.72) 42%, rgba(8, 13, 15, 0.18) 100%),
+    url("assets/hero-aerospace.png") center / cover no-repeat;
+  color: var(--white);
+}
+
+.hero-content {
+  width: min(100% - 2rem, var(--max-width));
+  margin: 0 auto;
+  padding: 4.5rem 0;
+}
+
+.hero h1,
+.page-hero h1 {
+  max-width: 780px;
+  margin: 0;
+  font-size: clamp(3rem, 7vw, 6.8rem);
+  line-height: 0.96;
+  letter-spacing: 0;
+}
+
+.hero-copy {
+  max-width: 620px;
+  margin: 1.4rem 0 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+}
+
+.eyebrow {
+  margin: 0 0 0.8rem;
+  color: var(--amber);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0.75rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-weight: 800;
+}
+
+.button-primary {
+  background: var(--amber);
+  color: #141311;
+}
+
+.button-secondary {
+  border-color: rgba(255, 255, 255, 0.36);
+  color: var(--white);
+}
+
+.button-light {
+  background: var(--white);
+  color: var(--ink);
+}
+
+.button:hover,
+.button:focus-visible {
+  transform: translateY(-1px);
+}
+
+.section {
+  padding: clamp(4rem, 8vw, 7rem) 0;
+}
+
+.section-inner {
+  width: min(100% - 2rem, var(--max-width));
+  margin: 0 auto;
+}
+
+.section-light {
+  background: var(--paper);
+}
+
+.section-white {
+  background: var(--white);
+}
+
+.section-dark {
+  background: var(--steel);
+  color: var(--white);
+}
+
+.intro-grid,
+.split-band,
+.about-layout,
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.intro-grid h2,
+.section-heading h2,
+.split-band h2,
+.about-copy h2,
+.contact-layout h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.intro-grid p:last-child,
+.about-copy p,
+.page-hero p {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.section-heading {
+  max-width: 720px;
+  margin-bottom: 2rem;
+}
+
+.feature-grid,
+.skill-grid,
+.project-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.feature-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.feature-card,
+.project-card,
+.profile-panel,
+.note-panel,
+.skill-grid article {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.feature-card {
+  min-height: 230px;
+  padding: 1.25rem;
+}
+
+.feature-index,
+.project-meta,
+.panel-label {
+  color: var(--green);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.feature-card h3,
+.skill-grid h3,
+.note-panel h3 {
+  margin: 1.8rem 0 0.6rem;
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.feature-card p,
+.skill-grid p,
+.project-card p,
+.note-panel p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.page-hero {
+  padding: clamp(4.5rem, 10vw, 8rem) 0;
+  background:
+    linear-gradient(90deg, rgba(24, 32, 33, 0.96), rgba(38, 50, 53, 0.82)),
+    url("assets/hero-aerospace.png") center / cover no-repeat;
+  color: var(--white);
+}
+
+.page-hero h1 {
+  font-size: clamp(2.6rem, 6vw, 5.2rem);
+}
+
+.page-hero p {
+  max-width: 680px;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.profile-panel,
+.note-panel {
+  padding: 1.5rem;
+}
+
+.fact-list {
+  margin: 1.5rem 0 0;
+}
+
+.fact-list div {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.fact-list dt {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.fact-list dd {
+  margin: 0;
+  font-weight: 800;
+}
+
+.skill-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.skill-grid article {
+  min-height: 190px;
+  padding: 1.4rem;
+}
+
+.project-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.project-card {
+  min-height: 330px;
+  padding: 1.5rem;
+}
+
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.project-card h2 {
+  margin: 3rem 0 0.8rem;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  list-style: none;
+}
+
+.tag-list li {
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--steel);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.contact-list {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.contact-list a {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.contact-list span {
+  color: var(--green);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.contact-list strong {
+  overflow-wrap: anywhere;
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  background: var(--white);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  width: min(100% - 2rem, var(--max-width));
+  margin: 0 auto;
+  padding: 1.2rem 0;
+  gap: 1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+  .feature-grid,
+  .project-grid,
+  .skill-grid,
+  .intro-grid,
+  .split-band,
+  .about-layout,
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card,
+  .project-card,
+  .skill-grid article {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .nav-toggle {
+    display: grid;
+  }
+
+  .nav-links {
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    top: 68px;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.6rem;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--white);
+    box-shadow: var(--shadow);
+  }
+
+  .nav-links.is-open {
+    display: flex;
+  }
+
+  .nav-links a {
+    width: 100%;
+  }
+
+  .hero {
+    min-height: 680px;
+    background:
+      linear-gradient(180deg, rgba(8, 13, 15, 0.95), rgba(8, 13, 15, 0.78)),
+      url("assets/hero-aerospace.png") 62% center / cover no-repeat;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 15vw, 4.8rem);
+  }
+
+  .footer-inner,
+  .project-meta {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand span:last-child {
+    max-width: 168px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .fact-list div {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+}
