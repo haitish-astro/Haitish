@@ -6,8 +6,9 @@ Static multi-page aerospace engineering portfolio prototype for GitHub Pages.
 
 - `index.html` - home page and portfolio introduction
 - `about.html` - biography and capability summary
-- `projects.html` - aerospace project placeholders
-- `contact.html` - contact and resume placeholder
+- `projects.html` - resume-backed aerospace project summaries
+- `contact.html` - contact details and resume PDF link
+- `assets/haitish-gandhi-resume.pdf` - current resume PDF linked from the site
 
 ## Publishing With GitHub Pages
 
