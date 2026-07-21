@@ -10,6 +10,16 @@ Use this folder for source materials that should appear on the portfolio later.
 - `projects/` - project-specific folders for artifacts that belong together.
 - `publications/` - publication PDFs, abstracts, posters, presentation decks, and citation notes.
 
+## Project Folders
+
+- `projects/hydroquad/` - HyDroQuad concepts, renders, analysis, and project documents.
+- `projects/nasa-lspace/` - NASA L'SPACE proposal artifacts, heat shield concepts, and review materials.
+- `projects/suparna-bio-inspired-uavs/` - SUPARNA wing morphing design research, figures, drafts, and prototypes.
+- `projects/laser-propulsion/` - laser propulsion research notes, plots, presentations, and supporting files.
+- `projects/paver-canopy/` - Eagle Flight Research Center PAVER fairing/canopy design artifacts.
+- `projects/launch-vehicle/` - EGR101 launch vehicle files, drawings, calculations, and reports.
+- `projects/alarm-clock-design/` - Graphical Communications alarm clock CAD, drawings, and design notes.
+
 ## Current Live Files
 
 - `photos/profile-photo.png` - profile photo used on the home and about pages.
