@@ -1,6 +1,6 @@
-# Haitish Gandhi Portfolio Prototype
+# Haitish Gandhi Portfolio
 
-Static multi-page aerospace engineering portfolio prototype for GitHub Pages.
+Static multi-page aerospace engineering portfolio for GitHub Pages.
 
 ## Pages
 
@@ -13,9 +13,11 @@ Static multi-page aerospace engineering portfolio prototype for GitHub Pages.
 - `artifacts/photos/profile-photo.png` - profile photo used on the site
 - `artifacts/photos/hero-aerospace.png` - aerospace hero visual
 
-## Artifact Library
+## Repo Artifact Library
 
-Use `artifacts/` as the drop zone for future source materials:
+Use `artifacts/` as a repo-only drop zone for future source materials. Files can
+be added here first, then linked into the website when a page is ready to display
+them.
 
 - `artifacts/photos/` - profile images, project photos, screenshots, renders, and visuals
 - `artifacts/pdfs/` - resumes, papers, reports, certificates, and proposals
