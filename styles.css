@@ -669,9 +669,36 @@ a {
 
 .project-card {
   position: relative;
+  display: block;
   overflow: hidden;
   min-height: 330px;
   padding: 1.5rem;
+}
+
+.project-card-link {
+  color: inherit;
+}
+
+.project-card-link:focus-visible {
+  outline: 3px solid rgba(29, 155, 178, 0.45);
+  outline-offset: 4px;
+}
+
+.card-action {
+  display: inline-flex;
+  margin-top: 1.5rem;
+  color: var(--cyan);
+  font-size: 0.9rem;
+}
+
+.card-action::after {
+  content: " ->";
+  transition: transform 180ms var(--ease);
+}
+
+.project-card-link:hover .card-action::after,
+.project-card-link:focus-visible .card-action::after {
+  transform: translateX(4px);
 }
 
 .project-directory-grid {
