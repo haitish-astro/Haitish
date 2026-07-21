@@ -444,9 +444,12 @@ a {
 
 .stat-grid,
 .publication-list,
-  .timeline,
-  .project-detail-grid,
-  .resume-grid {
+.timeline,
+.project-detail-grid,
+.resume-grid,
+.project-directory-grid,
+.project-page-grid,
+.asset-placeholder-grid {
   display: grid;
   gap: 1rem;
 }
@@ -461,13 +464,16 @@ a {
 
 .feature-card,
 .project-card,
+.project-tile,
+.development-panel,
+.asset-placeholder-panel,
 .profile-panel,
 .note-panel,
 .skill-grid article,
-  .stat-card,
-  .publication-card,
-  .timeline-card,
-  .project-detail {
+.stat-card,
+.publication-card,
+.timeline-card,
+.project-detail {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--white);
@@ -481,6 +487,10 @@ a {
 
 .feature-card:hover,
 .project-card:hover,
+.project-tile:hover,
+.project-tile:focus-visible,
+.development-panel:hover,
+.asset-placeholder-panel:hover,
 .profile-panel:hover,
 .note-panel:hover,
 .skill-grid article:hover,
@@ -664,10 +674,65 @@ a {
   padding: 1.5rem;
 }
 
+.project-directory-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.project-tile {
+  position: relative;
+  display: grid;
+  min-height: 280px;
+  aspect-ratio: 1 / 1;
+  align-content: space-between;
+  overflow: hidden;
+  padding: 1.25rem;
+}
+
+.project-tile::after {
+  position: absolute;
+  inset: auto 1.25rem 1.25rem auto;
+  color: rgba(29, 155, 178, 0.22);
+  content: "Open";
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
+  font-weight: 900;
+  line-height: 0.8;
+  pointer-events: none;
+  transform: translate(16px, 12px);
+  transition: color 260ms var(--ease), transform 260ms var(--ease);
+}
+
+.project-tile:hover::after,
+.project-tile:focus-visible::after {
+  color: rgba(201, 130, 46, 0.24);
+  transform: translate(8px, 4px);
+}
+
+.project-tile h2 {
+  margin: 1.4rem 0 0.6rem;
+  font-size: clamp(1.45rem, 2.8vw, 2.15rem);
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+.project-tile p {
+  max-width: 29ch;
+  margin: 0;
+  color: var(--muted);
+}
+
+.project-tile > strong {
+  position: relative;
+  z-index: 1;
+  color: var(--cyan);
+  font-size: 0.9rem;
+}
+
 .project-card::before,
 .project-detail::before,
+.project-tile::before,
 .timeline-card::before,
-.feature-card::before {
+.feature-card::before,
+.development-panel::before {
   display: block;
   width: 42px;
   height: 4px;
@@ -682,8 +747,11 @@ a {
 
 .project-card:hover::before,
 .project-detail:hover::before,
+.project-tile:hover::before,
+.project-tile:focus-visible::before,
 .timeline-card:hover::before,
-.feature-card:hover::before {
+.feature-card:hover::before,
+.development-panel:hover::before {
   transform: scaleX(1);
 }
 
@@ -704,8 +772,68 @@ a {
   grid-template-columns: 1fr;
 }
 
+.project-page-grid {
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  align-items: start;
+}
+
+.breadcrumb {
+  display: inline-flex;
+  margin-bottom: 1.25rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-weight: 900;
+}
+
+.breadcrumb::before {
+  content: "< ";
+}
+
 .project-detail {
   padding: clamp(1.2rem, 3vw, 2rem);
+}
+
+.development-panel,
+.asset-placeholder-panel {
+  padding: clamp(1.2rem, 3vw, 2rem);
+}
+
+.development-panel h2,
+.asset-placeholder-panel h2 {
+  margin: 1.5rem 0 0.8rem;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  line-height: 1.05;
+}
+
+.development-panel p {
+  max-width: 720px;
+  color: var(--muted);
+}
+
+.asset-placeholder-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.asset-placeholder-grid div {
+  min-height: 120px;
+  padding: 1rem;
+  border: 1px dashed rgba(29, 155, 178, 0.38);
+  border-radius: 8px;
+  background: rgba(29, 155, 178, 0.055);
+}
+
+.asset-placeholder-grid span {
+  display: block;
+  margin-bottom: 0.85rem;
+  color: var(--green);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.asset-placeholder-grid strong {
+  display: block;
+  line-height: 1.2;
 }
 
 .project-detail h2 {
@@ -790,7 +918,10 @@ a {
 }
 
 .project-card:hover .tag-list li,
-.project-detail:hover .tag-list li {
+.project-detail:hover .tag-list li,
+.project-tile:hover .tag-list li,
+.project-tile:focus-visible .tag-list li,
+.development-panel:hover .tag-list li {
   border-color: rgba(29, 155, 178, 0.34);
   background: rgba(29, 155, 178, 0.08);
 }
@@ -969,6 +1100,8 @@ a {
 
   .feature-grid,
   .project-grid,
+  .project-directory-grid,
+  .project-page-grid,
   .skill-grid,
   .stat-grid,
   .resume-grid,
@@ -1015,9 +1148,14 @@ a {
 
   .feature-card,
   .project-card,
+  .project-tile,
   .skill-grid article,
   .stat-card {
     min-height: 0;
+  }
+
+  .project-tile {
+    aspect-ratio: auto;
   }
 }
 
@@ -1059,6 +1197,10 @@ a {
 
   .publication-card a {
     justify-self: start;
+  }
+
+  .asset-placeholder-grid {
+    grid-template-columns: 1fr;
   }
 
   .footer-links {
