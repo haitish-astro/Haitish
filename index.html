@@ -8,7 +8,7 @@
       name="description"
       content="Aerospace engineering portfolio for Haitish Gandhi, featuring publications, projects, experience, and resume."
     >
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=20260720">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -36,18 +36,48 @@
     <main id="main">
       <section class="hero hero-home">
         <div class="hero-content">
-          <p class="eyebrow">Aerospace Engineering Portfolio</p>
-          <h1>Haitish Gandhi</h1>
-          <p class="hero-copy">
-            Aerospace engineering student, systems engineering intern, private pilot,
-            and published researcher focused on flight systems, robotics, CAD, and
-            mission-driven systems engineering.
-          </p>
-          <div class="hero-actions" aria-label="Primary actions">
-            <a class="button button-primary" href="#publications">Publications</a>
-            <a class="button button-secondary" href="projects.html">Projects</a>
-            <a class="button button-secondary" href="assets/haitish-gandhi-resume.pdf">Resume PDF</a>
+          <div class="hero-copy-block">
+            <p class="eyebrow">Aerospace Engineering Portfolio</p>
+            <h1>Haitish Gandhi</h1>
+            <p class="hero-copy">
+              Aerospace engineering student, systems engineering intern, private pilot,
+              and published researcher focused on flight systems, robotics, CAD, and
+              mission-driven systems engineering.
+            </p>
+            <div class="hero-actions" aria-label="Primary actions">
+              <a class="button button-primary" href="#publications">Publications</a>
+              <a class="button button-secondary" href="projects.html">Projects</a>
+              <a class="button button-secondary" href="artifacts/pdfs/haitish-gandhi-resume.pdf">Resume PDF</a>
+            </div>
           </div>
+          <aside class="hero-profile" aria-label="Profile summary">
+            <img src="artifacts/photos/profile-photo.png" alt="Portrait of Haitish Gandhi">
+            <div>
+              <p class="hero-profile-name">Haitish Gandhi</p>
+              <p>ERAU Honors Program | Aerospace Engineering | Systems Engineering</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="quick-nav" aria-label="Portfolio sections">
+        <div class="section-inner quick-nav-grid">
+          <a href="#publications">
+            <span>01</span>
+            <strong>Publications</strong>
+          </a>
+          <a href="#projects-home">
+            <span>02</span>
+            <strong>Projects</strong>
+          </a>
+          <a href="#experience-home">
+            <span>03</span>
+            <strong>Experience</strong>
+          </a>
+          <a href="#artifact-library">
+            <span>04</span>
+            <strong>Artifacts</strong>
+          </a>
         </div>
       </section>
 
@@ -109,7 +139,7 @@
         </div>
       </section>
 
-      <section class="section section-light">
+      <section class="section section-light" id="projects-home">
         <div class="section-inner">
           <div class="section-heading section-heading-row">
             <div>
@@ -160,7 +190,7 @@
         </div>
       </section>
 
-      <section class="section section-white">
+      <section class="section section-white" id="experience-home">
         <div class="section-inner">
           <div class="section-heading">
             <p class="eyebrow">Work Experience</p>
@@ -206,13 +236,39 @@
         </div>
       </section>
 
+      <section class="section section-light" id="artifact-library">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">Artifact Library</p>
+            <h2>A clean place for future project files, images, and documents.</h2>
+          </div>
+          <div class="artifact-grid">
+            <article class="artifact-card">
+              <span>Photos</span>
+              <h3>Project images and portraits</h3>
+              <p>Use `artifacts/photos/` for profile photos, CAD renders, lab photos, screenshots, and website visuals.</p>
+            </article>
+            <article class="artifact-card">
+              <span>PDFs</span>
+              <h3>Resume, reports, and papers</h3>
+              <p>Use `artifacts/pdfs/` for resume versions, proposals, publications, certificates, and export-ready reports.</p>
+            </article>
+            <article class="artifact-card">
+              <span>Projects</span>
+              <h3>Project-specific folders</h3>
+              <p>Use `artifacts/projects/` to keep HyDroQuad, NASA L'SPACE, and future project artifacts grouped.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section class="section section-dark">
         <div class="section-inner split-band">
           <div>
             <p class="eyebrow">Resume</p>
             <h2>Download the current resume PDF used for this prototype.</h2>
           </div>
-          <a class="button button-light" href="assets/haitish-gandhi-resume.pdf">Open Resume PDF</a>
+          <a class="button button-light" href="artifacts/pdfs/haitish-gandhi-resume.pdf">Open Resume PDF</a>
         </div>
       </section>
     </main>

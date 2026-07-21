@@ -8,7 +8,20 @@ Static multi-page aerospace engineering portfolio prototype for GitHub Pages.
 - `about.html` - biography and capability summary
 - `projects.html` - resume-backed aerospace project summaries
 - `contact.html` - contact details and resume PDF link
-- `assets/haitish-gandhi-resume.pdf` - current resume PDF linked from the site
+- `artifacts/` - portfolio source materials and live media/document assets
+- `artifacts/pdfs/haitish-gandhi-resume.pdf` - current resume PDF linked from the site
+- `artifacts/photos/profile-photo.png` - profile photo used on the site
+- `artifacts/photos/hero-aerospace.png` - aerospace hero visual
+
+## Artifact Library
+
+Use `artifacts/` as the drop zone for future source materials:
+
+- `artifacts/photos/` - profile images, project photos, screenshots, renders, and visuals
+- `artifacts/pdfs/` - resumes, papers, reports, certificates, and proposals
+- `artifacts/documents/` - editable drafts, notes, Word documents, and outlines
+- `artifacts/projects/` - project-specific artifact folders
+- `artifacts/publications/` - publication PDFs, abstracts, posters, and decks
 
 ## Publishing With GitHub Pages
 
