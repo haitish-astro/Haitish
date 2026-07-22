@@ -9,6 +9,7 @@ Static multi-page aerospace engineering portfolio for GitHub Pages.
 - `projects.html` - clickable project directory
 - `projects/` - individual under-development academic, research, and industry work-project case-study pages
 - `contact.html` - contact details and resume PDF link
+- `assets/peacock-feather-logo.svg` - peacock feather brand mark used for the nav logo and favicon
 - `artifacts/` - portfolio source materials and live media/document assets
 - `artifacts/pdfs/haitish-gandhi-resume.pdf` - current resume PDF linked from the site
 - `artifacts/photos/profile-photo.png` - profile photo used on the site
