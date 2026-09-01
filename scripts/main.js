@@ -1,8 +1,10 @@
 const toggle = document.querySelector(".nav-toggle");
 const nav = document.querySelector(".nav-links");
 const header = document.querySelector(".site-header");
+const root = document.documentElement;
+const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-document.documentElement.classList.add("js");
+root.classList.add("js");
 
 if (toggle && nav) {
   toggle.addEventListener("click", () => {
@@ -19,15 +21,31 @@ if (toggle && nav) {
 }
 
 if (header) {
-  const updateHeader = () => {
+  const updateScrollEffects = () => {
     header.classList.toggle("is-scrolled", window.scrollY > 10);
+
+    const scrollRange = root.scrollHeight - window.innerHeight;
+    const progress = scrollRange > 0 ? window.scrollY / scrollRange : 0;
+    root.style.setProperty("--scroll-progress", Math.min(Math.max(progress, 0), 1).toFixed(4));
   };
 
-  updateHeader();
-  window.addEventListener("scroll", updateHeader, { passive: true });
+  let scrollFrame = null;
+  const requestScrollUpdate = () => {
+    if (scrollFrame !== null) {
+      return;
+    }
+
+    scrollFrame = window.requestAnimationFrame(() => {
+      scrollFrame = null;
+      updateScrollEffects();
+    });
+  };
+
+  updateScrollEffects();
+  window.addEventListener("scroll", requestScrollUpdate, { passive: true });
+  window.addEventListener("resize", requestScrollUpdate);
 }
 
-const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 const revealTargets = document.querySelectorAll(
   [
     ".section-heading",
@@ -74,4 +92,40 @@ if (motionQuery.matches || !("IntersectionObserver" in window)) {
   );
 
   revealTargets.forEach((item) => revealObserver.observe(item));
+}
+
+const spotlightTargets = document.querySelectorAll(
+  [
+    ".feature-card",
+    ".project-card",
+    ".development-panel",
+    ".asset-placeholder-panel",
+    ".profile-panel",
+    ".note-panel",
+    ".skill-grid article",
+    ".stat-card",
+    ".publication-card",
+    ".timeline-card",
+    ".project-detail",
+    ".resume-grid > div",
+    ".contact-list a"
+  ].join(", ")
+);
+
+if (!motionQuery.matches) {
+  spotlightTargets.forEach((item) => {
+    item.addEventListener("pointermove", (event) => {
+      const rect = item.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width) * 100;
+      const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+      item.style.setProperty("--spotlight-x", `${x.toFixed(2)}%`);
+      item.style.setProperty("--spotlight-y", `${y.toFixed(2)}%`);
+    });
+
+    item.addEventListener("pointerleave", () => {
+      item.style.removeProperty("--spotlight-x");
+      item.style.removeProperty("--spotlight-y");
+    });
+  });
 }
