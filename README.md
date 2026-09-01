@@ -9,7 +9,10 @@ Static multi-page aerospace engineering portfolio for GitHub Pages.
 - `projects.html` - clickable project directory
 - `projects/` - individual under-development academic, research, and industry work-project case-study pages
 - `contact.html` - contact details and resume PDF link
-- `assets/hg-mark.svg` - VAHNIM Orange HG brand mark used for the favicon
+- `assets/haitish-signature-icon.png` - signature logo used for the nav mark and PNG favicon
+- `assets/haitish-signature-logo.png` - cropped transparent signature logo for future brand use
+- `assets/favicon.ico` - browser tab icon generated from the signature logo
+- `assets/apple-touch-icon.png` - mobile home-screen icon generated from the signature logo
 - `artifacts/` - portfolio source materials and live media/document assets
 - `artifacts/pdfs/haitish-gandhi-resume.pdf` - current resume PDF linked from the site
 - `artifacts/photos/profile-photo.png` - profile photo used on the site
