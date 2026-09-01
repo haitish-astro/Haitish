@@ -15,7 +15,14 @@ if (!motionQuery.matches) {
   scrollFlight.innerHTML = [
     '<span class="scroll-flight-track"></span>',
     '<span class="scroll-flight-progress"></span>',
-    '<button class="scroll-flight-plane" type="button" aria-label="Drag or use arrow keys to scroll the page" tabindex="-1"></button>'
+    '<button class="scroll-flight-plane" type="button" aria-label="Drag or use arrow keys to scroll the page" tabindex="-1">',
+    '<svg class="paper-plane-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">',
+    '<path class="paper-plane-body" d="M5.9 24.2 42.1 7.3 33.9 40.7 24.2 30.4 15.5 37.4 18.2 27.8 5.9 24.2Z"></path>',
+    '<path class="paper-plane-fold" d="M18.2 27.8 42.1 7.3 24.2 30.4"></path>',
+    '<path class="paper-plane-fold paper-plane-tail" d="M15.5 37.4 24.2 30.4 33.9 40.7"></path>',
+    '<path class="paper-plane-crease" d="M18.2 27.8 33.9 40.7"></path>',
+    '</svg>',
+    '</button>'
   ].join("");
   document.body.append(scrollFlight);
   flightPlane = scrollFlight.querySelector(".scroll-flight-plane");

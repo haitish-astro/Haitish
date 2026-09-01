@@ -111,21 +111,21 @@ body::before {
   position: absolute;
   top: var(--flight-offset, 0%);
   left: 50%;
-  display: block;
-  width: 32px;
-  height: 32px;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
   padding: 0;
   border: 0;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.86);
-  box-shadow: 0 14px 30px rgba(23, 24, 25, 0.18), 0 0 0 1px rgba(253, 121, 10, 0.22);
+  background: transparent;
   cursor: grab;
+  isolation: isolate;
   pointer-events: none;
   touch-action: none;
   transform: translate(-50%, -50%) rotate(var(--flight-rotation)) scale(var(--flight-scale));
   transition:
-    background 180ms ease,
-    box-shadow 220ms ease,
+    filter 220ms ease,
     transform 220ms var(--ease);
 }
 
@@ -139,8 +139,7 @@ body::before {
 
 .is-flight-dragging .scroll-flight-plane {
   --flight-scale: 1.08;
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 18px 38px rgba(23, 24, 25, 0.24), 0 0 0 4px rgba(253, 121, 10, 0.16);
+  filter: drop-shadow(0 16px 24px rgba(23, 24, 25, 0.24));
   cursor: grabbing;
 }
 
@@ -151,8 +150,7 @@ body::before {
 
 .scroll-flight-plane:hover,
 .scroll-flight-plane:focus-visible {
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 18px 38px rgba(23, 24, 25, 0.22), 0 0 0 4px rgba(253, 121, 10, 0.14);
+  filter: drop-shadow(0 14px 22px rgba(23, 24, 25, 0.2));
 }
 
 .scroll-flight-plane:focus-visible {
@@ -162,23 +160,57 @@ body::before {
 
 .scroll-flight-plane::before {
   position: absolute;
-  inset: 8px 6px 8px 7px;
-  background: linear-gradient(135deg, var(--orange), var(--orange-soft));
-  clip-path: polygon(0 50%, 100% 0, 72% 50%, 100% 100%);
+  inset: 3px;
+  z-index: -1;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 12px 28px rgba(23, 24, 25, 0.16), 0 0 0 1px rgba(253, 121, 10, 0.2);
   content: "";
+  opacity: 0.88;
+  transform: scale(0.82);
+  transition: opacity 220ms ease, transform 220ms var(--ease), box-shadow 220ms ease;
 }
 
-.scroll-flight-plane::after {
-  position: absolute;
-  top: 15px;
-  left: 10px;
-  width: 14px;
-  height: 2px;
-  border-radius: 999px;
-  background: rgba(255, 244, 234, 0.8);
-  content: "";
-  transform: rotate(-19deg);
-  transform-origin: left;
+.scroll-flight-plane:hover::before,
+.scroll-flight-plane:focus-visible::before,
+.is-flight-dragging .scroll-flight-plane::before {
+  box-shadow: 0 18px 38px rgba(23, 24, 25, 0.2), 0 0 0 4px rgba(253, 121, 10, 0.14);
+  opacity: 1;
+  transform: scale(0.92);
+}
+
+.paper-plane-icon {
+  position: relative;
+  z-index: 1;
+  width: 34px;
+  height: 34px;
+  overflow: visible;
+  filter: drop-shadow(0 8px 10px rgba(23, 24, 25, 0.2));
+}
+
+.paper-plane-body {
+  fill: #fff8ef;
+  stroke: var(--orange);
+  stroke-linejoin: round;
+  stroke-width: 2.2;
+}
+
+.paper-plane-fold,
+.paper-plane-crease {
+  fill: none;
+  stroke: var(--orange-deep);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.75;
+}
+
+.paper-plane-tail {
+  opacity: 0.76;
+}
+
+.paper-plane-crease {
+  opacity: 0.38;
+  stroke-width: 1.35;
 }
 
 .js body {
