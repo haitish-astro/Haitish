@@ -6,6 +6,18 @@ const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 root.classList.add("js");
 
+if (!motionQuery.matches) {
+  const scrollFlight = document.createElement("div");
+  scrollFlight.className = "scroll-flight";
+  scrollFlight.setAttribute("aria-hidden", "true");
+  scrollFlight.innerHTML = [
+    '<span class="scroll-flight-track"></span>',
+    '<span class="scroll-flight-progress"></span>',
+    '<span class="scroll-flight-plane"></span>'
+  ].join("");
+  document.body.append(scrollFlight);
+}
+
 if (toggle && nav) {
   toggle.addEventListener("click", () => {
     const isOpen = nav.classList.toggle("is-open");
@@ -26,7 +38,11 @@ if (header) {
 
     const scrollRange = root.scrollHeight - window.innerHeight;
     const progress = scrollRange > 0 ? window.scrollY / scrollRange : 0;
-    root.style.setProperty("--scroll-progress", Math.min(Math.max(progress, 0), 1).toFixed(4));
+    const clampedProgress = Math.min(Math.max(progress, 0), 1);
+    const flightOffset = 4 + clampedProgress * 92;
+    root.classList.toggle("has-flight-path", scrollRange > 260 && window.innerWidth > 900);
+    root.style.setProperty("--scroll-progress", clampedProgress.toFixed(4));
+    root.style.setProperty("--flight-offset", `${flightOffset.toFixed(2)}%`);
   };
 
   let scrollFrame = null;

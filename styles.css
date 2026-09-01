@@ -61,6 +61,85 @@ body::before {
   transform-origin: left;
 }
 
+.scroll-flight {
+  position: fixed;
+  top: clamp(6rem, 13vh, 8rem);
+  right: clamp(0.65rem, 1.8vw, 1.4rem);
+  bottom: clamp(4.5rem, 10vh, 7rem);
+  z-index: 8;
+  width: 38px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(14px);
+  transition: opacity 320ms ease, transform 320ms var(--ease);
+}
+
+.has-flight-path .scroll-flight {
+  opacity: 0.9;
+  transform: translateX(0);
+}
+
+.scroll-flight-track,
+.scroll-flight-progress {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  border-radius: 999px;
+  transform: translateX(-50%);
+}
+
+.scroll-flight-track {
+  background:
+    radial-gradient(circle, rgba(253, 121, 10, 0.72) 1.45px, transparent 1.75px)
+    center top / 2px 14px repeat-y;
+  filter: drop-shadow(0 0 8px rgba(253, 121, 10, 0.18));
+  opacity: 0.62;
+}
+
+.scroll-flight-progress {
+  background: linear-gradient(180deg, var(--orange), rgba(255, 177, 104, 0.64));
+  box-shadow: 0 0 16px rgba(253, 121, 10, 0.32);
+  transform: translateX(-50%) scaleY(var(--scroll-progress, 0));
+  transform-origin: top;
+}
+
+.scroll-flight-plane {
+  position: absolute;
+  top: var(--flight-offset, 0%);
+  left: 50%;
+  display: block;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 14px 30px rgba(23, 24, 25, 0.18), 0 0 0 1px rgba(253, 121, 10, 0.22);
+  transform: translate(-50%, -50%) rotate(90deg);
+  transition: box-shadow 220ms ease;
+}
+
+.scroll-flight-plane::before {
+  position: absolute;
+  inset: 8px 6px 8px 7px;
+  background: linear-gradient(135deg, var(--orange), var(--orange-soft));
+  clip-path: polygon(0 50%, 100% 0, 72% 50%, 100% 100%);
+  content: "";
+}
+
+.scroll-flight-plane::after {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  width: 14px;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(255, 244, 234, 0.8);
+  content: "";
+  transform: rotate(-19deg);
+  transform-origin: left;
+}
+
 .js body {
   animation: page-settle 520ms ease both;
 }
@@ -1300,6 +1379,10 @@ a {
     opacity: 1;
     transform: none;
   }
+
+  .scroll-flight {
+    display: none;
+  }
 }
 
 .footer-inner {
@@ -1342,6 +1425,10 @@ a {
 }
 
 @media (max-width: 900px) {
+  .scroll-flight {
+    display: none;
+  }
+
   .nav-toggle {
     position: fixed;
     top: 17px;
