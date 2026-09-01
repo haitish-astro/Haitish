@@ -45,13 +45,23 @@ if (toggle && nav) {
 }
 
 if (header) {
+  const setFlightDirection = (delta) => {
+    if (Math.abs(delta) <= 0.6) {
+      return;
+    }
+
+    root.classList.toggle("is-flight-down", delta > 0);
+    root.classList.toggle("is-flight-up", delta < 0);
+  };
+
   const updateScrollEffects = () => {
     header.classList.toggle("is-scrolled", window.scrollY > 10);
 
     const scrollRange = root.scrollHeight - window.innerHeight;
     const progress = scrollRange > 0 ? window.scrollY / scrollRange : 0;
     const clampedProgress = Math.min(Math.max(progress, 0), 1);
-    const flightOffset = 4 + clampedProgress * 92;
+    const flightPathHeight = scrollFlight ? scrollFlight.clientHeight : 0;
+    const flightY = flightPathHeight * (0.04 + clampedProgress * 0.92);
     const scrollDelta = window.scrollY - lastScrollY;
     const showFlightPath = scrollRange > 260 && window.innerWidth > 900;
 
@@ -59,13 +69,14 @@ if (header) {
     if (flightPlane) {
       flightPlane.tabIndex = showFlightPath ? 0 : -1;
     }
+    setFlightDirection(scrollDelta);
     if (Math.abs(scrollDelta) > 0.6) {
-      root.classList.toggle("is-flight-down", scrollDelta > 0);
-      root.classList.toggle("is-flight-up", scrollDelta < 0);
       lastScrollY = window.scrollY;
     }
     root.style.setProperty("--scroll-progress", clampedProgress.toFixed(4));
-    root.style.setProperty("--flight-offset", `${flightOffset.toFixed(2)}%`);
+    if (scrollFlight) {
+      scrollFlight.style.setProperty("--flight-y", `${flightY.toFixed(1)}px`);
+    }
   };
 
   let scrollFrame = null;
@@ -85,27 +96,42 @@ if (header) {
   window.addEventListener("resize", requestScrollUpdate);
 
   if (scrollFlight && flightPlane) {
-    const scrollToPointer = (event) => {
+    let dragFrame = null;
+    let pendingPointerY = null;
+
+    const scrollToPointer = (clientY) => {
       const rect = scrollFlight.getBoundingClientRect();
-      const pointerOffset = ((event.clientY - rect.top) / rect.height) * 100;
+      const pointerOffset = ((clientY - rect.top) / rect.height) * 100;
       const pointerProgress = (pointerOffset - 4) / 92;
       const clampedProgress = Math.min(Math.max(pointerProgress, 0), 1);
       const nextScrollY = clampedProgress * Math.max(root.scrollHeight - window.innerHeight, 0);
       const dragDelta = nextScrollY - window.scrollY;
 
-      if (Math.abs(dragDelta) > 0.6) {
-        root.classList.toggle("is-flight-down", dragDelta > 0);
-        root.classList.toggle("is-flight-up", dragDelta < 0);
-      }
+      setFlightDirection(dragDelta);
       window.scrollTo({ top: nextScrollY, behavior: "auto" });
       updateScrollEffects();
+    };
+
+    const requestPointerScroll = (event) => {
+      pendingPointerY = event.clientY;
+
+      if (dragFrame !== null) {
+        return;
+      }
+
+      dragFrame = window.requestAnimationFrame(() => {
+        dragFrame = null;
+        if (pendingPointerY !== null) {
+          scrollToPointer(pendingPointerY);
+        }
+      });
     };
 
     flightPlane.addEventListener("pointerdown", (event) => {
       event.preventDefault();
       flightPlane.setPointerCapture(event.pointerId);
       root.classList.add("is-flight-dragging");
-      scrollToPointer(event);
+      scrollToPointer(event.clientY);
     });
 
     flightPlane.addEventListener("pointermove", (event) => {
@@ -113,7 +139,7 @@ if (header) {
         return;
       }
 
-      scrollToPointer(event);
+      requestPointerScroll(event);
     });
 
     const stopFlightDrag = (event) => {
@@ -121,6 +147,11 @@ if (header) {
         flightPlane.releasePointerCapture(event.pointerId);
       }
 
+      if (dragFrame !== null) {
+        window.cancelAnimationFrame(dragFrame);
+        dragFrame = null;
+      }
+      pendingPointerY = null;
       root.classList.remove("is-flight-dragging");
     };
 
@@ -148,8 +179,7 @@ if (header) {
       const keyDelta = nextScrollY - window.scrollY;
 
       if (keyDelta !== 0) {
-        root.classList.toggle("is-flight-down", keyDelta > 0);
-        root.classList.toggle("is-flight-up", keyDelta < 0);
+        setFlightDirection(keyDelta);
         window.scrollTo({ top: nextScrollY, behavior: "smooth" });
       }
     });

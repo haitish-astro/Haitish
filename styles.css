@@ -72,6 +72,8 @@ body::before {
   pointer-events: none;
   transform: translateX(14px);
   transition: opacity 320ms ease, transform 320ms var(--ease);
+  contain: layout paint;
+  will-change: opacity, transform;
 }
 
 .has-flight-path .scroll-flight {
@@ -103,13 +105,14 @@ body::before {
   box-shadow: 0 0 16px rgba(253, 121, 10, 0.32);
   transform: translateX(-50%) scaleY(var(--scroll-progress, 0));
   transform-origin: top;
+  will-change: transform;
 }
 
 .scroll-flight-plane {
   --flight-rotation: 0deg;
   --flight-scale: 1;
   position: absolute;
-  top: var(--flight-offset, 0%);
+  top: 0;
   left: 50%;
   display: grid;
   width: 48px;
@@ -123,10 +126,9 @@ body::before {
   isolation: isolate;
   pointer-events: none;
   touch-action: none;
-  transform: translate(-50%, -50%) rotate(var(--flight-rotation)) scale(var(--flight-scale));
-  transition:
-    filter 220ms ease,
-    transform 220ms var(--ease);
+  transform: translate3d(-50%, calc(var(--flight-y, 0px) - 50%), 0);
+  transition: filter 180ms ease;
+  will-change: transform;
 }
 
 .has-flight-path .scroll-flight-plane {
@@ -190,6 +192,10 @@ body::before {
   height: 48px;
   overflow: visible;
   filter: drop-shadow(0 9px 10px rgba(23, 24, 25, 0.18));
+  transform: rotate(var(--flight-rotation)) scale(var(--flight-scale));
+  transform-origin: 50% 52%;
+  transition: transform 220ms var(--ease), filter 180ms ease;
+  will-change: transform;
 }
 
 .paper-plane-wing-left {
