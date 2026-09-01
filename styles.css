@@ -106,14 +106,14 @@ body::before {
 }
 
 .scroll-flight-plane {
-  --flight-rotation: 90deg;
+  --flight-rotation: 0deg;
   --flight-scale: 1;
   position: absolute;
   top: var(--flight-offset, 0%);
   left: 50%;
   display: grid;
-  width: 42px;
-  height: 42px;
+  width: 48px;
+  height: 54px;
   place-items: center;
   padding: 0;
   border: 0;
@@ -133,8 +133,12 @@ body::before {
   pointer-events: auto;
 }
 
+.is-flight-down .scroll-flight-plane {
+  --flight-rotation: 180deg;
+}
+
 .is-flight-up .scroll-flight-plane {
-  --flight-rotation: -90deg;
+  --flight-rotation: 0deg;
 }
 
 .is-flight-dragging .scroll-flight-plane {
@@ -160,57 +164,68 @@ body::before {
 
 .scroll-flight-plane::before {
   position: absolute;
-  inset: 3px;
+  inset: 5px 2px;
   z-index: -1;
   border-radius: inherit;
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: 0 12px 28px rgba(23, 24, 25, 0.16), 0 0 0 1px rgba(253, 121, 10, 0.2);
+  background: radial-gradient(circle, rgba(255, 241, 230, 0.9), rgba(255, 241, 230, 0.16) 58%, transparent 72%);
+  box-shadow: none;
   content: "";
-  opacity: 0.88;
-  transform: scale(0.82);
+  opacity: 0.68;
+  transform: scale(0.78);
   transition: opacity 220ms ease, transform 220ms var(--ease), box-shadow 220ms ease;
 }
 
 .scroll-flight-plane:hover::before,
 .scroll-flight-plane:focus-visible::before,
 .is-flight-dragging .scroll-flight-plane::before {
-  box-shadow: 0 18px 38px rgba(23, 24, 25, 0.2), 0 0 0 4px rgba(253, 121, 10, 0.14);
+  box-shadow: 0 0 0 4px rgba(253, 121, 10, 0.11);
   opacity: 1;
-  transform: scale(0.92);
+  transform: scale(0.95);
 }
 
 .paper-plane-icon {
   position: relative;
   z-index: 1;
-  width: 34px;
-  height: 34px;
+  width: 42px;
+  height: 48px;
   overflow: visible;
-  filter: drop-shadow(0 8px 10px rgba(23, 24, 25, 0.2));
+  filter: drop-shadow(0 9px 10px rgba(23, 24, 25, 0.18));
 }
 
-.paper-plane-body {
-  fill: #fff8ef;
-  stroke: var(--orange);
-  stroke-linejoin: round;
-  stroke-width: 2.2;
+.paper-plane-wing-left {
+  fill: #ffb168;
 }
 
+.paper-plane-wing-right {
+  fill: var(--orange);
+}
+
+.paper-plane-keel {
+  fill: #d85d00;
+  opacity: 0.92;
+}
+
+.paper-plane-edge,
 .paper-plane-fold,
-.paper-plane-crease {
+.paper-plane-tail {
   fill: none;
   stroke: var(--orange-deep);
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 1.75;
+}
+
+.paper-plane-edge {
+  stroke-width: 2.35;
+}
+
+.paper-plane-fold {
+  opacity: 0.45;
+  stroke-width: 1.45;
 }
 
 .paper-plane-tail {
-  opacity: 0.76;
-}
-
-.paper-plane-crease {
-  opacity: 0.38;
-  stroke-width: 1.35;
+  opacity: 0.58;
+  stroke-width: 2;
 }
 
 .js body {
