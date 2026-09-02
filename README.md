@@ -7,7 +7,7 @@ Static multi-page aerospace engineering portfolio.
 - `index.html` - home page and portfolio introduction
 - `about.html` - biography and capability summary
 - `projects.html` - clickable project directory
-- `projects/` - individual under-development academic, research, and industry work-project case-study pages
+- `projects/` - individual public snapshots for academic, research, and industry work
 - `contact.html` - privacy-conscious professional contact page
 - `assets/haitish-signature-icon.png` - signature logo used for the nav mark and PNG favicon
 - `assets/haitish-signature-logo.png` - cropped transparent signature logo for future brand use
