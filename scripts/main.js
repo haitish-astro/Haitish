@@ -202,8 +202,9 @@ const revealTargets = document.querySelectorAll(
     ".skill-grid article",
     ".profile-panel",
     ".note-panel",
-    ".resume-grid > div",
+    ".credential-grid > div",
     ".contact-list a",
+    ".contact-list > div",
     ".split-band"
   ].join(", ")
 );
@@ -247,8 +248,9 @@ const spotlightTargets = document.querySelectorAll(
     ".publication-card",
     ".timeline-card",
     ".project-detail",
-    ".resume-grid > div",
-    ".contact-list a"
+    ".credential-grid > div",
+    ".contact-list a",
+    ".contact-list > div"
   ].join(", ")
 );
 

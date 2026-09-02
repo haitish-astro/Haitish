@@ -739,7 +739,7 @@ a {
 .publication-list,
 .timeline,
 .project-detail-grid,
-.resume-grid,
+.credential-grid,
 .project-directory-grid,
 .project-page-grid,
 .asset-placeholder-grid {
@@ -794,8 +794,9 @@ a {
 .publication-card::after,
 .timeline-card::after,
 .project-detail::after,
-.resume-grid > div::after,
-.contact-list a::after {
+.credential-grid > div::after,
+.contact-list a::after,
+.contact-list > div::after {
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -822,8 +823,9 @@ a {
 .publication-card:hover::after,
 .timeline-card:hover::after,
 .project-detail:hover::after,
-.resume-grid > div:hover::after,
-.contact-list a:hover::after {
+.credential-grid > div:hover::after,
+.contact-list a:hover::after,
+.contact-list > div:hover::after {
   opacity: 1;
 }
 
@@ -838,8 +840,9 @@ a {
 .publication-card > *,
 .timeline-card > *,
 .project-detail > *,
-.resume-grid > div > *,
-.contact-list a > * {
+.credential-grid > div > *,
+.contact-list a > *,
+.contact-list > div > * {
   position: relative;
   z-index: 1;
 }
@@ -858,7 +861,8 @@ a {
 .timeline-card:hover,
 .project-detail:hover,
 .contact-list a:hover,
-.resume-grid > div:hover {
+.contact-list > div:hover,
+.credential-grid > div:hover {
   border-color: rgba(253, 121, 10, 0.36);
   box-shadow: var(--shadow-hover);
   transform: translateY(-5px);
@@ -1286,12 +1290,12 @@ a {
   border-left: 5px solid var(--orange);
 }
 
-.resume-grid {
+.credential-grid {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   align-items: start;
 }
 
-.resume-grid > div {
+.credential-grid > div {
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -1301,16 +1305,6 @@ a {
   border-radius: 8px;
   background: var(--white);
   box-shadow: var(--shadow);
-}
-
-.resume-panel {
-  display: grid;
-  gap: 1rem;
-  align-content: start;
-}
-
-.resume-panel .button {
-  justify-self: start;
 }
 
 .tag-list {
@@ -1347,7 +1341,8 @@ a {
   margin-top: 1.5rem;
 }
 
-.contact-list a {
+.contact-list a,
+.contact-list > div {
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -1573,7 +1568,7 @@ a {
   .project-page-grid,
   .skill-grid,
   .stat-grid,
-  .resume-grid,
+  .credential-grid,
   .hero-content,
   .intro-grid,
   .split-band,

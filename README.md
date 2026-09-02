@@ -1,6 +1,6 @@
 # Haitish Gandhi Portfolio
 
-Static multi-page aerospace engineering portfolio for GitHub Pages.
+Static multi-page aerospace engineering portfolio.
 
 ## Pages
 
@@ -8,40 +8,33 @@ Static multi-page aerospace engineering portfolio for GitHub Pages.
 - `about.html` - biography and capability summary
 - `projects.html` - clickable project directory
 - `projects/` - individual under-development academic, research, and industry work-project case-study pages
-- `contact.html` - contact details and resume PDF link
+- `contact.html` - privacy-conscious professional contact page
 - `assets/haitish-signature-icon.png` - signature logo used for the nav mark and PNG favicon
 - `assets/haitish-signature-logo.png` - cropped transparent signature logo for future brand use
 - `assets/favicon.ico` - browser tab icon generated from the signature logo
 - `assets/apple-touch-icon.png` - mobile home-screen icon generated from the signature logo
 - `artifacts/` - portfolio source materials and live media/document assets
-- `artifacts/pdfs/haitish-gandhi-resume.pdf` - current resume PDF linked from the site
 - `artifacts/photos/profile-photo.png` - profile photo used on the site
 - `artifacts/photos/hero-aerospace.png` - aerospace hero visual
 
 ## Repo Artifact Library
 
-Use `artifacts/` as a repo-only drop zone for future source materials. Files can
-be added here first, then linked into the website when a page is ready to display
-them.
+Use `artifacts/` for public portfolio materials only. Do not commit private
+career documents, direct personal contact details, transcripts, IDs, private
+reports, or proprietary files unless they are intentionally meant to be public.
 
 - `artifacts/photos/` - profile images, project photos, screenshots, renders, and visuals
-- `artifacts/pdfs/` - resumes, papers, reports, certificates, and proposals
+- `artifacts/pdfs/` - public papers, reports, certificates, and proposals
 - `artifacts/documents/` - editable drafts, notes, Word documents, and outlines
 - `artifacts/projects/` - project-specific artifact folders
 - `artifacts/publications/` - publication PDFs, abstracts, posters, and decks
 
-## Publishing With GitHub Pages
+## Publishing
 
 1. Commit and push these files to `main`.
-2. In GitHub, open repository settings, then Pages.
+2. Open the repository hosting settings.
 3. Set Source to `Deploy from a branch`.
 4. Select branch `main` and folder `/root`.
-5. Save and wait for GitHub Pages to publish.
-
-Expected public URL:
-
-```text
-https://haitish-astro.github.io/Haitish/
-```
+5. Save and wait for the static site to publish.
 
 No build step is required.
