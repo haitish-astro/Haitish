@@ -4,7 +4,12 @@ Static multi-page aerospace engineering portfolio.
 
 ## Pages
 
-- `index.html` - home page and portfolio introduction
+- `index.html` - personal home with Professional and Everyday destinations
+- `professional.html` - preserved portfolio introduction, publications, and experience
+- `everyday.html` - searchable personal journal
+- `story.html?post=POST_ID` - article, save/share controls, and private email replies
+- `studio.html` - browser-based writing studio with live preview, local drafts, and import/export
+- `content/posts.json` - published stories only; currently empty intentionally
 - `about.html` - biography and capability summary
 - `projects.html` - clickable project directory
 - `projects/` - individual public snapshots for academic, research, and industry work
@@ -38,3 +43,25 @@ reports, or proprietary files unless they are intentionally meant to be public.
 5. Save and wait for the static site to publish.
 
 No build step is required.
+
+## Writing Studio
+
+Open `/studio.html` to write. Drafts autosave in your browser on this device;
+export JSON backups before clearing browser data. Drafts are not uploaded or
+published. The studio URL is not authentication: it holds no server-side private
+data or publishing credentials. Anyone opening it only sees their own browser's
+drafts. Do not use a shared browser profile for private drafts.
+
+Publishing and a moderated, shared comment/reaction service are deferred at the
+owner's request. The article reply box currently opens the visitor's email app.
+Saved notes and reactions stay on the visitor's device, with no shared counts. No invented posts,
+comments, or engagement counts are shipped.
+
+To integrate an approved post manually before a CMS is connected, add its exported
+object to the array in `content/posts.json`. Fields: `id`, `title`, `date`
+(YYYY-MM-DD), `excerpt`, and `body`. Paragraphs use blank lines, headings use
+`## `, and quotes use `> `. HTML is rendered as text for safety.
+
+Only publish reviewed, public-safe images. Strip location metadata before adding
+new personal photos. The referenced iCloud photos folder was not present in the
+workspace during this update; the existing approved portrait is used instead.
