@@ -53,9 +53,11 @@ data or publishing credentials. Anyone opening it only sees their own browser's
 drafts. Do not use a shared browser profile for private drafts.
 
 Publishing and a moderated, shared comment/reaction service are deferred at the
-owner's request. The article reply box currently opens the visitor's email app.
-Saved notes and reactions stay on the visitor's device, with no shared counts. No invented posts,
-comments, or engagement counts are shipped.
+owner's request. The article reply box opens a pre-filled Gmail compose tab
+(to haitish.astro@gmail.com) in the browser rather than handing off to a
+separate email app. Saved notes and reactions stay on the visitor's device,
+with no shared counts. No invented posts, comments, or engagement counts are
+shipped.
 
 To integrate an approved post manually before a CMS is connected, add its exported
 object to the array in `content/posts.json`. Fields: `id`, `title`, `date`
