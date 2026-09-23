@@ -59,8 +59,17 @@ comments, or engagement counts are shipped.
 
 To integrate an approved post manually before a CMS is connected, add its exported
 object to the array in `content/posts.json`. Fields: `id`, `title`, `date`
-(YYYY-MM-DD), `excerpt`, and `body`. Paragraphs use blank lines, headings use
-`## `, and quotes use `> `. HTML is rendered as text for safety.
+(YYYY-MM-DD), `excerpt`, `body`, and an optional `image` (a relative path into
+`artifacts/photos/`, shown as a cover image above the article). Paragraphs use
+blank lines, headings use `## `, and quotes use `> `. HTML is rendered as text
+for safety.
+
+## Blog Studio
+
+Posts are published from a separate desktop app, Blog Studio, which writes to
+`content/posts.json` and `artifacts/photos/` and pushes to `main` using the
+Git installation already on this machine. It never touches any other file in
+this repo.
 
 Only publish reviewed, public-safe images. Strip location metadata before adding
 new personal photos. Four selected photos from the local iCloud folder are now
