@@ -63,5 +63,8 @@ object to the array in `content/posts.json`. Fields: `id`, `title`, `date`
 `## `, and quotes use `> `. HTML is rendered as text for safety.
 
 Only publish reviewed, public-safe images. Strip location metadata before adding
-new personal photos. The referenced iCloud photos folder was not present in the
-workspace during this update; the existing approved portrait is used instead.
+new personal photos. Four selected photos from the local iCloud folder are now
+stored in `artifacts/photos/` as optimized WebP files without EXIF or XMP metadata:
+`aiaa-conference.webp`, `cockpit-visit.webp`, `outdoors.webp`, and `garden-walk.webp`.
+The first two appear on Professional; the outdoor pair appears on Everyday.
+Originals and the other photos remain outside the repository.
