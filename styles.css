@@ -61,179 +61,6 @@ body::before {
   transform-origin: left;
 }
 
-.scroll-flight {
-  position: fixed;
-  top: clamp(6rem, 13vh, 8rem);
-  right: clamp(0.65rem, 1.8vw, 1.4rem);
-  bottom: clamp(4.5rem, 10vh, 7rem);
-  z-index: 8;
-  width: 38px;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateX(14px);
-  transition: opacity 320ms ease, transform 320ms var(--ease);
-  contain: layout paint;
-  will-change: opacity, transform;
-}
-
-.has-flight-path .scroll-flight {
-  opacity: 0.9;
-  transform: translateX(0);
-}
-
-.scroll-flight-track,
-.scroll-flight-progress {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 2px;
-  border-radius: 999px;
-  transform: translateX(-50%);
-}
-
-.scroll-flight-track {
-  background:
-    radial-gradient(circle, rgba(253, 121, 10, 0.72) 1.45px, transparent 1.75px)
-    center top / 2px 14px repeat-y;
-  filter: drop-shadow(0 0 8px rgba(253, 121, 10, 0.18));
-  opacity: 0.62;
-}
-
-.scroll-flight-progress {
-  background: linear-gradient(180deg, var(--orange), rgba(255, 177, 104, 0.64));
-  box-shadow: 0 0 16px rgba(253, 121, 10, 0.32);
-  transform: translateX(-50%) scaleY(var(--scroll-progress, 0));
-  transform-origin: top;
-  will-change: transform;
-}
-
-.scroll-flight-plane {
-  --flight-rotation: 0deg;
-  --flight-scale: 1;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  display: grid;
-  width: 48px;
-  height: 54px;
-  place-items: center;
-  padding: 0;
-  border: 0;
-  border-radius: 999px;
-  background: transparent;
-  cursor: grab;
-  isolation: isolate;
-  pointer-events: none;
-  touch-action: none;
-  transform: translate3d(-50%, calc(var(--flight-y, 0px) - 50%), 0);
-  transition: filter 180ms ease;
-  will-change: transform;
-}
-
-.has-flight-path .scroll-flight-plane {
-  pointer-events: auto;
-}
-
-.is-flight-down .scroll-flight-plane {
-  --flight-rotation: 180deg;
-}
-
-.is-flight-up .scroll-flight-plane {
-  --flight-rotation: 0deg;
-}
-
-.is-flight-dragging .scroll-flight-plane {
-  --flight-scale: 1.08;
-  filter: drop-shadow(0 16px 24px rgba(23, 24, 25, 0.24));
-  cursor: grabbing;
-}
-
-.is-flight-dragging body {
-  cursor: grabbing;
-  user-select: none;
-}
-
-.scroll-flight-plane:hover,
-.scroll-flight-plane:focus-visible {
-  filter: drop-shadow(0 14px 22px rgba(23, 24, 25, 0.2));
-}
-
-.scroll-flight-plane:focus-visible {
-  outline: 3px solid rgba(253, 121, 10, 0.42);
-  outline-offset: 4px;
-}
-
-.scroll-flight-plane::before {
-  position: absolute;
-  inset: 5px 2px;
-  z-index: -1;
-  border-radius: inherit;
-  background: radial-gradient(circle, rgba(255, 241, 230, 0.9), rgba(255, 241, 230, 0.16) 58%, transparent 72%);
-  box-shadow: none;
-  content: "";
-  opacity: 0.68;
-  transform: scale(0.78);
-  transition: opacity 220ms ease, transform 220ms var(--ease), box-shadow 220ms ease;
-}
-
-.scroll-flight-plane:hover::before,
-.scroll-flight-plane:focus-visible::before,
-.is-flight-dragging .scroll-flight-plane::before {
-  box-shadow: 0 0 0 4px rgba(253, 121, 10, 0.11);
-  opacity: 1;
-  transform: scale(0.95);
-}
-
-.paper-plane-icon {
-  position: relative;
-  z-index: 1;
-  width: 42px;
-  height: 48px;
-  overflow: visible;
-  filter: drop-shadow(0 9px 10px rgba(23, 24, 25, 0.18));
-  transform: rotate(var(--flight-rotation)) scale(var(--flight-scale));
-  transform-origin: 50% 52%;
-  transition: transform 220ms var(--ease), filter 180ms ease;
-  will-change: transform;
-}
-
-.paper-plane-wing-left {
-  fill: #ffb168;
-}
-
-.paper-plane-wing-right {
-  fill: var(--orange);
-}
-
-.paper-plane-keel {
-  fill: #d85d00;
-  opacity: 0.92;
-}
-
-.paper-plane-edge,
-.paper-plane-fold,
-.paper-plane-tail {
-  fill: none;
-  stroke: var(--orange-deep);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.paper-plane-edge {
-  stroke-width: 2.35;
-}
-
-.paper-plane-fold {
-  opacity: 0.45;
-  stroke-width: 1.45;
-}
-
-.paper-plane-tail {
-  opacity: 0.58;
-  stroke-width: 2;
-}
-
 .js body {
   animation: page-settle 520ms ease both;
 }
@@ -1468,10 +1295,6 @@ a {
     opacity: 1;
     transform: none;
   }
-
-  .scroll-flight {
-    display: none;
-  }
 }
 
 .footer-inner {
@@ -1514,10 +1337,6 @@ a {
 }
 
 @media (max-width: 900px) {
-  .scroll-flight {
-    display: none;
-  }
-
   .nav-toggle {
     position: fixed;
     top: 17px;
