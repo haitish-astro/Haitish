@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "id": "trial",
+    "title": "Trial",
+    "date": "2026-09-23",
+    "excerpt": "This is a test for todays blog... I have been working and working for making this happen and today it might just work.",
+    "body": "Hopefully today has been working out as its supposed to be!"
+  }
+]
