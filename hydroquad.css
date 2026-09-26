@@ -1,0 +1,68 @@
+.hdq-case { background: #fff; }
+.hdq-case .page-hero { padding-bottom: 44px; }
+.hdq-case .page-hero p { max-width: 760px; }
+.hdq-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.hdq-metrics { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); margin: 0; border-top: 1px solid #dce0e3; border-bottom: 1px solid #dce0e3; }
+.hdq-metrics > div { display: flex; flex-direction: column-reverse; gap: 8px; padding: 28px 20px; border-right: 1px solid #dce0e3; }
+.hdq-metrics > div:last-child { border-right: 0; }
+.hdq-metrics dt { font-size: 12px; color: #626a70; }
+.hdq-metrics dd { margin: 0; font-size: 31px; font-weight: 650; line-height: 1.3; }
+.hdq-metrics dd span { font-size: 15px; font-weight: 400; }
+.hdq-case figure { margin: 0; min-width: 0; }
+.hdq-case figure a { display: block; }
+.hdq-case figure img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.hdq-case figcaption { color: #626a70; font-size: 12px; line-height: 1.6; margin-top: 12px; }
+.hdq-case .hdq-assembly { max-width: 930px; margin: 32px auto; }
+.hdq-contents { display: flex; flex-wrap: wrap; gap: 12px 28px; padding: 22px 0; border-top: 1px solid #dce0e3; }
+.hdq-contents a { font-size: 14px; color: #343b41; text-decoration: none; }
+.hdq-contents a:hover { color: #a74300; }
+.hdq-case section[id] { scroll-margin-top: 100px; }
+.hdq-split { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 64px; }
+.hdq-case h2 { font-size: 32px; line-height: 1.23; margin: 0 0 24px; letter-spacing: 0; }
+.hdq-case h3 { font-size: 20px; line-height: 1.35; margin: 0 0 18px; }
+.hdq-prose p { margin: 0 0 20px; font-size: 16px; line-height: 1.85; }
+.hdq-prose .hdq-credit, .hdq-note { font-size: 13px; color: #626a70; line-height: 1.7; }
+.hdq-design-grid { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 56px; margin-top: 32px; align-items: start; }
+.hdq-budget dl { margin: 0 0 24px; }
+.hdq-budget dl > div { display: flex; justify-content: space-between; gap: 20px; border-bottom: 1px solid #dce0e3; padding: 12px 0; }
+.hdq-budget dd { margin: 0; font-weight: 600; }
+.hdq-budget p { font-size: 14px; line-height: 1.7; color: #626a70; }
+.hdq-total { font-weight: 650; color: #a74300; }
+.hdq-case .hdq-wide-figure { margin: 32px auto; max-width: 1040px; }
+.hdq-table-wrap { overflow-x: auto; margin-top: 36px; }
+.hdq-case table { width: 100%; border-collapse: collapse; font-size: 14px; text-align: left; }
+.hdq-case caption { text-align: left; font-size: 12px; color: #626a70; padding-bottom: 16px; }
+.hdq-case th, .hdq-case td { padding: 16px 18px; border-bottom: 1px solid #dce0e3; vertical-align: top; }
+.hdq-case thead { background: #edf0f2; }
+.hdq-case tbody th { font-weight: 550; width: 30%; }
+.hdq-case tbody td:nth-child(2) { width: 18%; white-space: nowrap; font-weight: 650; }
+.hdq-takeaway { border-left: 3px solid #fd790a; padding: 4px 0 4px 24px; margin-top: 40px; max-width: 850px; }
+.hdq-takeaway p { margin: 0; line-height: 1.8; }
+.hdq-test-grid { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 64px; margin-top: 36px; align-items: center; }
+.hdq-test-grid figure { max-width: 340px; justify-self: end; }
+.hdq-bar-row { display: grid; grid-template-columns: 1fr auto; gap: 12px; margin: 24px 0; font-size: 14px; }
+.hdq-bar { grid-column: 1/-1; height: 14px; background: #edf0f2; }
+.hdq-bar span { display: block; height: 100%; background: #566571; }
+.hdq-bar-measured span { background: #fd790a; }
+.hdq-paper { display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+.hdq-paper > div { max-width: 740px; }
+.hdq-paper .button { flex-shrink: 0; }
+@media(max-width:900px) {
+  .hdq-split, .hdq-design-grid { gap: 32px; }
+  .hdq-metrics { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .hdq-metrics > div:nth-child(2) { border-right: 0; }
+  .hdq-metrics > div:nth-child(-n+2) { border-bottom: 1px solid #dce0e3; }
+}
+@media(max-width:640px) {
+  .hdq-split, .hdq-design-grid, .hdq-test-grid { grid-template-columns: 1fr; gap: 24px; }
+  .hdq-case h2 { font-size: 27px; }
+  .hdq-metrics > div { padding: 20px 12px; }
+  .hdq-metrics dd { font-size: 25px; }
+  .hdq-metrics dt { font-size: 11px; }
+  .hdq-contents { gap: 12px 20px; }
+  .hdq-contents a { font-size: 13px; }
+  .hdq-case th, .hdq-case td { padding: 12px 8px; font-size: 12px; }
+  .hdq-case tbody td:nth-child(2) { white-space: normal; }
+  .hdq-test-grid figure { justify-self: center; }
+  .hdq-paper { flex-direction: column; align-items: start; gap: 20px; }
+}

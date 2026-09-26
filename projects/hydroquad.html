@@ -7,9 +7,10 @@
     <link rel="icon" href="../assets/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="512x512" href="../assets/haitish-signature-icon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
-    <title>HyDroQuad Project | Haitish Gandhi</title>
-    <meta name="description" content="Project snapshot for Haitish Gandhi's HyDroQuad project.">
+    <title>HyDroQuad: Design, Simulation &amp; Flight Testing | Haitish Gandhi</title>
+    <meta name="description" content="A drone-quadruped research platform, from propulsion sizing and mechanical integration to rotor-wake CFD and a 6-minute initial flight test.">
     <link rel="stylesheet" href="../styles.css?v=20260902-privacy">
+    <link rel="stylesheet" href="../hydroquad.css?v=20260926">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -35,52 +36,98 @@
       </nav>
     </header>
 
-    <main id="main">
+    <main id="main" class="hdq-case">
       <section class="page-hero">
         <div class="section-inner">
           <a class="breadcrumb" href="../projects.html">Projects</a>
-          <p class="eyebrow">Project Snapshot</p>
-          <h1>HyDroQuad Project</h1>
-          <p>
-
-            A research platform for studying how a hybrid robot could move between air
-            and ground. This page keeps the focus on concept, architecture, and
-            shareable outputs.
-
-          </p>
+          <p class="eyebrow">Robotics Research / HDQ-MK1</p>
+          <h1>HyDroQuad</h1>
+          <p>A lightweight drone-quadruped platform. Designed to walk around obstacles, with flight as another way through.</p>
+          <div class="hdq-hero-actions">
+            <a class="button button-primary" href="#flight-testing">See the flight results</a>
+            <a class="button button-secondary" href="#design">Explore the design</a>
+          </div>
         </div>
       </section>
 
-      <section class="section section-white">
-        <div class="section-inner project-page-grid">
-          <article class="development-panel">
-            <span class="feature-index">Snapshot</span>
-            <h2>A short public snapshot for now.</h2>
-            <p>
+      <div class="section-inner">
+        <dl class="hdq-metrics" aria-label="Project at a glance">
+          <div><dt>MK1 system mass</dt><dd>786 <span>g</span></dd></div>
+          <div><dt>Quadruped payload</dt><dd>290 <span>g</span></dd></div>
+          <div><dt>Predicted hover endurance</dt><dd>6.51 <span>min</span></dd></div>
+          <div><dt>Initial timed flight</dt><dd>6 <span>min</span> 02 <span>s</span></dd></div>
+        </dl>
+        <figure class="hdq-assembly">
+          <a href="../artifacts/projects/hydroquad/assembly.webp" aria-label="Open the full-size HyDroQuad CAD assembly"><img src="../artifacts/projects/hydroquad/assembly.webp" alt="SolidWorks assembly showing the four-rotor airframe mounted above the quadruped's articulated legs" width="1503" height="839" fetchpriority="high"></a>
+          <figcaption>HDQ-MK1 integrated assembly in SolidWorks. Paper Fig. 3.</figcaption>
+        </figure>
+        <nav class="hdq-contents" aria-label="Case study sections">
+          <a href="#overview">Overview</a><a href="#design">Design</a><a href="#simulation">Simulation</a><a href="#aerodynamics">Aerodynamics</a><a href="#flight-testing">Flight testing</a><a href="#next-steps">Next steps</a>
+        </nav>
+      </div>
 
-              I will add CAD views, simulation visuals, publication material, and
-              project images when they are ready to share.
+      <section class="section section-white" id="overview">
+        <div class="section-inner hdq-split">
+          <div><p class="eyebrow">01 / The Challenge</p><h2>One platform.<br>More ways to move.</h2></div>
+          <div class="hdq-prose">
+            <p>Wheels, legs, and rotors each solve a different mobility problem. HyDroQuad explores what happens when a small quadruped and a multirotor share one platform: ground movement for ordinary terrain, and short flights when an obstacle makes walking impractical.</p>
+            <p>My work connects the mechanical interface, propulsion sizing, simulation, and prototype testing. The first question was practical: could the aerial subsystem lift the combined vehicle with enough margin left for control?</p>
+            <p>The research is motivated by planetary exploration, but the work presented here is Earth-based. HDQ-MK1 demonstrated lift-off and hover; autonomous walking-to-flight transitions and operation in planetary conditions remain future work.</p>
+            <p class="hdq-credit">Research by Haitish Gandhi and Cagri Kilic at Embry-Riddle Aeronautical University, with partial support from an IGNITE undergraduate research grant.</p>
+          </div>
+        </div>
+      </section>
 
-            </p>
-            <ul class="tag-list" aria-label="HyDroQuad tags">
-              <li>Systems</li>
-              <li>Robotics</li>
-              <li>ANSYS Fluent</li>
-              <li>Python</li>
-              <li>MATLAB</li>
-            </ul>
-          </article>
-          <aside class="asset-placeholder-panel" aria-label="Future project assets">
-            <h2>What I may add next</h2>
-            <div class="asset-placeholder-grid">
-              <div><span>Images</span><strong>Photos and CAD renders</strong></div>
-              <div><span>Files</span><strong>Reports and PDFs</strong></div>
-              <div><span>Analysis</span><strong>Simulation plots</strong></div>
-              <div><span>Media</span><strong>Demo visuals</strong></div>
+      <section class="section section-light" id="design">
+        <div class="section-inner">
+          <div class="hdq-split">
+            <div><p class="eyebrow">02 / System Design</p><h2>The connection matters as much as the components.</h2></div>
+            <div class="hdq-prose">
+              <p>The platform pairs a carbon-fiber multirotor frame with a Petoi Bittle quadruped. A custom mounting interface, the merger component, connects the two and keeps the combined center of gravity aligned with the thrust axis.</p>
+              <p>The SolidWorks assembly adapted existing platform geometry rather than starting every part from scratch. A parametric interface made it possible to adjust battery placement, leg spacing, and rotor clearance as the design evolved.</p>
+              <p>An early mass estimate of about 1.1 kg helped set the lift requirement. The refined MK1 budget came to 786 g, including the 290 g quadruped and a 200 g battery. A minimum 2:1 thrust-to-weight ratio was used as the design target.</p>
             </div>
-          </aside>
+          </div>
+          <div class="hdq-design-grid">
+            <figure>
+              <a href="../artifacts/projects/hydroquad/prototype.webp" aria-label="Open the full-size HDQ-MK1 prototype photo"><img src="../artifacts/projects/hydroquad/prototype.webp" alt="Assembled HDQ-MK1 with red propellers, a top-mounted battery, and yellow articulated legs" width="731" height="516" loading="lazy" decoding="async"></a>
+              <figcaption>The assembled prototype, shown before flight testing. Paper Fig. 5(a).</figcaption>
+            </figure>
+            <div class="hdq-budget">
+              <h3>Where the mass goes</h3>
+              <dl><div><dt>Quadruped payload</dt><dd>290 g</dd></div><div><dt>Battery</dt><dd>200 g</dd></div><div><dt>Frame</dt><dd>86 g</dd></div><div><dt>Accessories</dt><dd>210 g</dd></div><div class="hdq-total"><dt>Total</dt><dd>786 g</dd></div></dl>
+              <p>Model configuration: four rotors, T-Motor Velox V3 motor data, T5147-3 propellers, and a 6S 1300 mAh battery.</p>
+            </div>
+          </div>
         </div>
       </section>
+
+      <section class="section section-white" id="simulation">
+        <div class="section-inner">
+          <div class="hdq-split"><div><p class="eyebrow">03 / Performance Model</p><h2>Size it before building it.</h2></div><div class="hdq-prose"><p>A MATLAB thrust calculation established the starting point. A Python GUI then brought the component selections and mass budget together, using empirical motor-propeller data to estimate hover throttle, electrical demand, thrust margin, and endurance.</p><p>The model interpolates between measured component data points and assumes 80% usable battery capacity for its endurance estimate. It also compares predicted hover current with the selected battery's rated continuous discharge limit.</p></div></div>
+          <figure class="hdq-wide-figure"><a href="../artifacts/projects/hydroquad/performance-model.webp" aria-label="Open the full-size Python performance model screenshot"><img src="../artifacts/projects/hydroquad/performance-model.webp" alt="HyDroQuad Python GUI showing component inputs, predicted hover results, a thrust-versus-throttle plot, and a quadcopter layout" width="1884" height="1133" loading="lazy" decoding="async"></a><figcaption>Python GUI output for the 786 g test case. These are model predictions, not flight telemetry. Paper Fig. 6.</figcaption></figure>
+          <div class="hdq-table-wrap"><table><caption>Selected model outputs / Paper Table 7</caption><thead><tr><th scope="col">Metric</th><th scope="col">Prediction</th><th scope="col">What it tells us</th></tr></thead><tbody><tr><th scope="row">Hover thrust per rotor</th><td>196.5 gf</td><td>One quarter of the vehicle's weight, about 1.93 N.</td></tr><tr><th scope="row">Hover throttle</th><td>20%</td><td>Interpolated from the selected motor-propeller data.</td></tr><tr><th scope="row">Hover electrical power</th><td>212.8 W</td><td>The modeled power demand for all four motors.</td></tr><tr><th scope="row">Hover current</th><td>8.8 A</td><td>The predicted load on the battery at hover.</td></tr><tr><th scope="row">Maximum thrust-to-weight</th><td>8.1:1</td><td>An estimate based on component data, before installed-system losses.</td></tr><tr><th scope="row">Hover endurance</th><td>6.51 min</td><td>The prediction used for comparison with the initial flight test.</td></tr></tbody></table></div>
+        </div>
+      </section>
+
+      <section class="section section-light" id="aerodynamics">
+        <div class="section-inner">
+          <div class="hdq-split"><div><p class="eyebrow">04 / Aerodynamics</p><h2>Four rotors don't behave like four isolated tests.</h2></div><div class="hdq-prose"><p>Component bench data is a useful starting point, but nearby rotors change each other's airflow. The paper's CFD setup used nominal 5-inch rotors at 5.35-inch center spacing, leaving just 0.35 inches between adjacent tips.</p><p>Ansys Fluent was used to examine that interaction with a steady rotating-reference-frame model, k-omega SST turbulence closure, and local mesh refinement around the blades. The rotor study ran for 1,000 iterations, monitoring residuals and force histories.</p></div></div>
+          <figure class="hdq-wide-figure"><a href="../artifacts/projects/hydroquad/rotor-mesh.webp" aria-label="Open the rotor geometry and mesh figure"><img src="../artifacts/projects/hydroquad/rotor-mesh.webp" alt="Four propellers and their separate cylindrical rotating mesh regions in Ansys" width="1698" height="439" loading="lazy" decoding="async"></a><figcaption>Propeller geometry and meshing regions used for the rotor study. Paper Fig. 7.</figcaption></figure>
+          <figure class="hdq-wide-figure"><a href="../artifacts/projects/hydroquad/rotor-wakes.webp" aria-label="Open the rotor wake visualization"><img src="../artifacts/projects/hydroquad/rotor-wakes.webp" alt="Ansys pathlines showing neighboring rotor wakes bending and merging beneath the propellers" width="1826" height="975" loading="lazy" decoding="async"></a><figcaption>Pathlines reveal overlapping wakes beneath the closely spaced rotors. Colors identify particles; they are not a velocity scale. Paper Fig. 8.</figcaption></figure>
+          <div class="hdq-takeaway"><h3>The design takeaway</h3><p>Rotor spacing belongs in the system trade study, not just the packaging drawing. The flow visualization showed wake merging and interaction that isolated-motor curves do not capture. The CFD model excluded the quadruped frame, so it does not establish the complete vehicle's aerodynamic performance.</p></div>
+        </div>
+      </section>
+
+      <section class="section section-white" id="flight-testing">
+        <div class="section-inner">
+          <div class="hdq-split"><div><p class="eyebrow">05 / Initial Flight Testing</p><h2>From a prediction to a flying prototype.</h2></div><div class="hdq-prose"><p>Integration checks covered motor direction, the flight controller and ESC, the radio link, IMU calibration, and GPS acquisition. The assembled MK1 then achieved controlled lift-off and sustained hover in an outdoor test with negligible wind.</p><p>The reported flight lasted 6 minutes 2 seconds, compared with a prediction of 6.51 minutes, or about 6 minutes 31 seconds. That is roughly 29 seconds shorter than the model, about a 7% difference.</p><p>This is an encouraging first comparison, not a repeatability study. The time came from the transmitter's motor-running timer, and the test ended when more throttle was needed. It was not a controlled battery-capacity or instrumented endurance measurement.</p></div></div>
+          <div class="hdq-test-grid"><div><h3>Endurance comparison</h3><div class="hdq-bar-row"><span>Predicted hover</span><strong>6 min 31 s</strong><div class="hdq-bar"><span style="width:100%"></span></div></div><div class="hdq-bar-row"><span>Initial timed flight</span><strong>6 min 02 s</strong><div class="hdq-bar hdq-bar-measured"><span style="width:92.7%"></span></div></div><p class="hdq-note">Prediction: 6.51 minutes. Test: 10:00 minus 3:58 remaining on the transmitter timer.</p></div><figure><a href="../artifacts/projects/hydroquad/flight-timer.webp" aria-label="Open the transmitter timer photo"><img src="../artifacts/projects/hydroquad/flight-timer.webp" alt="Transmitter display showing 3 minutes 58 seconds remaining on the 10-minute flight timer" width="666" height="600" loading="lazy" decoding="async"></a><figcaption>Timer evidence from the initial test. Paper Fig. 12.</figcaption></figure></div>
+        </div>
+      </section>
+
+      <section class="section section-light" id="next-steps"><div class="section-inner hdq-split"><div><p class="eyebrow">06 / What Comes Next</p><h2>Flight feasibility is the first step.</h2></div><div class="hdq-prose"><p>The prototype shows that the aerial subsystem can lift the combined platform on Earth. The next challenge is making the two forms of movement work together: repeatable transitions, coordinated control, and testing across more terrain and operating conditions.</p><p>Further aerodynamic work should include the full frame and quadruped, while repeated flight tests with logged electrical data would help separate battery effects from propulsion and control losses.</p><p>For me, the useful lesson is the connection between models and hardware. A mass budget drives the propulsion choice; packaging changes the airflow; testing shows which assumptions need another look.</p></div></div></section>
+      <section class="section section-white" aria-labelledby="hdq-paper-heading"><div class="section-inner hdq-paper"><div><p class="eyebrow">Research Paper</p><h2 id="hdq-paper-heading">Design and Simulation of HyDroQuad</h2><p>A Drone-Quadruped Hybrid for Lightweight Multi-Modal Locomotion</p><p class="hdq-note">Haitish V. Gandhi and Cagri Kilic. Figures and reported results on this page come from the project manuscript.</p></div><a class="button button-primary" href="https://doi.org/10.2514/6.2026-1119">View publication</a></div></section>
     </main>
 
     <footer class="site-footer">
