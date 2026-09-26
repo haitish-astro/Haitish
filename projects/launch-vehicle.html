@@ -7,15 +7,17 @@
     <link rel="icon" href="../assets/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="512x512" href="../assets/haitish-signature-icon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
-    <title>Launch Vehicle | Haitish Gandhi</title>
-    <meta name="description" content="Project snapshot for Haitish Gandhi's launch vehicle project.">
+    <title>MGC-A1 Launch Vehicle | Haitish Gandhi</title>
+    <meta name="description" content="A three-stage launch vehicle concept linking bulkhead design, mass sizing, and trajectory simulation.">
     <link rel="stylesheet" href="../styles.css?v=20260902-privacy">
+    <link rel="stylesheet" href="../hydroquad.css?v=20260926">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
       <nav class="nav-shell" aria-label="Primary navigation">
+
         <a class="brand" href="../index.html" aria-label="Haitish Gandhi home">
           <span class="brand-mark"><img src="../assets/haitish-signature-icon.png" alt="" aria-hidden="true"></span>
           <span>Haitish Gandhi</span>
@@ -26,74 +28,172 @@
           <span class="nav-toggle-line"></span>
         </button>
         <div class="nav-links" id="primary-nav">
+
           <a href="../index.html">Home</a>
           <a href="../professional.html">Professional</a>
           <a href="../about.html">About</a>
           <a href="../projects.html" aria-current="page">Projects</a>
           <a href="../contact.html">Contact</a>
         </div>
+
       </nav>
+
     </header>
 
-    <main id="main">
-      <section class="page-hero">
-        <div class="section-inner">
-          <a class="breadcrumb" href="../projects.html">Projects</a>
-          <p class="eyebrow">Project Snapshot</p>
-          <h1>Launch Vehicle</h1>
-          <p>
-
-            An early launch vehicle design project focused on structure, payload
-            decisions, and cost-aware tradeoffs.
-
-          </p>
-        </div>
-      </section>
-
-      <section class="section section-white">
-        <div class="section-inner project-page-grid">
-          <article class="development-panel">
-            <span class="feature-index">Snapshot</span>
-            <h2>A short public snapshot for now.</h2>
-            <p>
-
-              I will add concept visuals, drawings, calculations, and trade notes when
-              they are ready to share.
-
-            </p>
-            <ul class="tag-list" aria-label="Launch vehicle tags">
-              <li>Structures</li>
-              <li>Launch Vehicle</li>
-              <li>Bulkhead</li>
-              <li>EGR101</li>
-            </ul>
-          </article>
-          <aside class="asset-placeholder-panel" aria-label="Future project assets">
-            <h2>What I may add next</h2>
-            <div class="asset-placeholder-grid">
-              <div><span>Images</span><strong>Vehicle concepts</strong></div>
-              <div><span>Files</span><strong>Reports</strong></div>
-              <div><span>Analysis</span><strong>Cost trades</strong></div>
-              <div><span>CAD</span><strong>Bulkhead design</strong></div>
-            </div>
-          </aside>
-        </div>
-      </section>
-    </main>
+    <main id="main" class="hdq-case">
+<section class="page-hero">
+<div class="section-inner">
+<a class="breadcrumb" href="../projects.html">Projects</a><p class="eyebrow">
+Academic Design / Structures &amp; Simulation</p>
+<h1>
+MGC-A1 Launch Vehicle</h1>
+<p>
+A launch vehicle is a set of connected tradeoffs. Our team worked through them, from the payload requirement to the final structural layout.</p>
+</div>
+</section>
+<div class="section-inner">
+<dl class="hdq-metrics" aria-label="Project at a glance">
+<div>
+<dt>Payload requirement</dt><dd>650 <span>lb</span></dd></div>
+<div>
+<dt>Target altitude</dt><dd>150 <span>nmi</span></dd></div>
+<div>
+<dt>Selected architecture</dt><dd>3 <span>stages</span></dd></div>
+<div>
+<dt>Estimated launch mass</dt><dd>101,000 <span>lb</span></dd></div>
+</dl>
+<nav class="hdq-contents" aria-label="Case study sections">
+<a href="#overview">Overview</a><a href="#structures">Structures</a><a href="#simulation">Simulation</a><a href="#takeaways">Takeaways</a></nav>
+</div>
+<section class="section section-white" id="overview">
+<div class="section-inner">
+<div class="hdq-split">
+<div>
+<p class="eyebrow">
+01 / overview</p>
+<h2>
+Start with the payload.</h2>
+</div>
+<div class="hdq-prose">
+<p>
+For this introductory engineering project, our team developed MGC-A1, a conceptual solid-propellant launch vehicle for a 650 lb payload. The payload envelope, target altitude, and staging constraints set the starting point for the design.</p>
+<p>
+My contribution focused on bulkhead design. That meant considering how the structure carries loads while staying consistent with the vehicle's geometry and mass budget. The wider team brought together motor selection, MATLAB sizing, trajectory modeling, and cost estimates.</p>
+<p>
+This was an academic design and simulation study, not a manufactured or flight-tested rocket.</p>
+</div>
+</div>
+<figure class="hdq-wide-figure">
+<a href="../artifacts/projects/launch-vehicle/assembly.webp" aria-label="Open full-size figure"><img src="../artifacts/projects/launch-vehicle/assembly.webp" alt="Team CAD rendering of the three-stage MGC-A1 launch vehicle" width="1540" height="992" loading="lazy" decoding="async"></a><figcaption>
+MGC-A1 concept rendering from the final team report, page 52. This is a CAD visualization, not flight hardware.</figcaption>
+</figure>
+</div>
+</section>
+<section class="section section-light" id="structures">
+<div class="section-inner">
+<div class="hdq-split">
+<div>
+<p class="eyebrow">
+02 / structures</p>
+<h2>
+Follow the load path.</h2>
+</div>
+<div class="hdq-prose">
+<p>
+The design uses four bulkheads to support and connect the major vehicle sections. The lower structure uses ASTM A414 Grade H steel, while the upper payload structure uses aluminum 6063-T5 to reduce mass.</p>
+<p>
+The first-to-second-stage bulkhead was increased from a nominal one-inch thickness to two inches to meet the report's stress requirement. That change illustrates the central trade: adding local strength also adds mass that the propulsion system must carry.</p>
+<p>
+The final assembly drawing records those interfaces and dimensions in one place. It makes the design reviewable beyond a spreadsheet.</p>
+</div>
+</div>
+<figure class="hdq-wide-figure">
+<a href="../artifacts/projects/launch-vehicle/drawing.webp" aria-label="Open full-size figure"><img src="../artifacts/projects/launch-vehicle/drawing.webp" alt="Dimensioned MGC-A1 assembly drawing with interstage geometry and bulkhead thickness notes" width="1344" height="1016" loading="lazy" decoding="async"></a><figcaption>
+Final assembly drawing, report page 52. Team drawing by Ari D'Costa, approved by Haitish Gandhi.</figcaption>
+</figure>
+</div>
+</section>
+<section class="section section-white" id="simulation">
+<div class="section-inner">
+<div class="hdq-split">
+<div>
+<p class="eyebrow">
+03 / simulation</p>
+<h2>
+Check the model, then question the margin.</h2>
+</div>
+<div class="hdq-prose">
+<p>
+The team iterated stage sizing and propulsion choices to reduce the estimated launch mass from the preliminary 173,450 lb configuration to about 101,000 lb. The final report compares ideal delta-v sizing with a separate trajectory simulation.</p>
+<p>
+The ideal delta-v calculation closely matches its requirement, but that agreement is model closure, not proof of an orbital mission. The trajectory result remains below the target orbital speed.</p>
+</div>
+</div>
+<div class="hdq-table-wrap">
+<table>
+<caption>
+Reported analysis results, not flight measurements</caption>
+<thead>
+<tr>
+<th scope="col">Check</th><th scope="col">Reported value</th><th scope="col">Interpretation</th></tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Ideal delta-v</th><td>29,609 ft/s</td><td>Compared with a calculated requirement of approximately 29,607 ft/s.</td></tr>
+<tr>
+<th scope="row">Terminal velocity</th><td>24,124 ft/s</td><td>4.97% below the 25,385 ft/s target; within the coursework's 5% tolerance.</td></tr>
+<tr>
+<th scope="row">Burnout altitude</th><td>151.5 nmi</td><td>Simulated altitude near the nominal 150 nmi target.</td></tr>
+<tr>
+<th scope="row">Estimated total cost</th><td>$14.2 million</td><td>Coursework cost model, not a supplier quote or program budget.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="section section-light" id="takeaways">
+<div class="section-inner">
+<div class="hdq-split">
+<div>
+<p class="eyebrow">
+04 / takeaways</p>
+<h2>
+A workable model still has open questions.</h2>
+</div>
+<div class="hdq-prose">
+<p>
+The report also identifies a third-stage height-to-diameter ratio of 2.95, slightly below its recommended minimum of 3. Together with the velocity shortfall, that is a reason for another design iteration rather than a claim that every requirement was met.</p>
+<p>
+The project gave me a practical introduction to systems thinking through structures: changing one bulkhead affects mass, staging, performance, and cost. Keeping those connections visible was as important as getting the individual calculations done.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="section section-white">
+<div class="section-inner">
+<a class="button button-secondary" href="../projects.html">Explore more projects</a></div>
+</section>
+</main>
 
     <footer class="site-footer">
       <div class="footer-inner">
+
         <div>
+
           <strong>Haitish Gandhi</strong>
           <span>Aerospace Engineering Portfolio</span>
         </div>
+
         <nav class="footer-links" aria-label="Footer navigation">
+
           <a href="../index.html">Home</a>
           <a href="../about.html">About</a>
           <a href="../projects.html">Projects</a>
           <a href="../contact.html">Contact</a>
         </nav>
+
       </div>
+
     </footer>
 
     <script src="../scripts/main.js?v=20260902-privacy"></script>

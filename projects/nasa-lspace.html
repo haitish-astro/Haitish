@@ -7,15 +7,17 @@
     <link rel="icon" href="../assets/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="512x512" href="../assets/haitish-signature-icon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
-    <title>NASA L'SPACE NPWEE | Haitish Gandhi</title>
-    <meta name="description" content="Project snapshot for Haitish Gandhi's NASA L'SPACE NPWEE work.">
+    <title>SHIELDS Heat-Shield Concept | Haitish Gandhi</title>
+    <meta name="description" content="A NASA L'SPACE NPWEE student proposal combining a layered thermal-protection tile with active cooling.">
     <link rel="stylesheet" href="../styles.css?v=20260902-privacy">
+    <link rel="stylesheet" href="../hydroquad.css?v=20260926">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
       <nav class="nav-shell" aria-label="Primary navigation">
+
         <a class="brand" href="../index.html" aria-label="Haitish Gandhi home">
           <span class="brand-mark"><img src="../assets/haitish-signature-icon.png" alt="" aria-hidden="true"></span>
           <span>Haitish Gandhi</span>
@@ -26,74 +28,166 @@
           <span class="nav-toggle-line"></span>
         </button>
         <div class="nav-links" id="primary-nav">
+
           <a href="../index.html">Home</a>
           <a href="../professional.html">Professional</a>
           <a href="../about.html">About</a>
           <a href="../projects.html" aria-current="page">Projects</a>
           <a href="../contact.html">Contact</a>
         </div>
+
       </nav>
+
     </header>
 
-    <main id="main">
-      <section class="page-hero">
-        <div class="section-inner">
-          <a class="breadcrumb" href="../projects.html">Projects</a>
-          <p class="eyebrow">Project Snapshot</p>
-          <h1>NASA L'SPACE Academy NPWEE</h1>
-          <p>
-
-            A spacecraft re-entry proposal focused on turning a mission challenge into
-            requirements, architecture choices, and review-ready rationale.
-
-          </p>
-        </div>
-      </section>
-
-      <section class="section section-white">
-        <div class="section-inner project-page-grid">
-          <article class="development-panel">
-            <span class="feature-index">Snapshot</span>
-            <h2>A short public snapshot for now.</h2>
-            <p>
-
-              I will add proposal excerpts, sanitized review material, CAD visuals, and
-              architecture notes when they are ready to share.
-
-            </p>
-            <ul class="tag-list" aria-label="NASA L'SPACE tags">
-              <li>Systems</li>
-              <li>Thermal Protection</li>
-              <li>Requirements</li>
-              <li>Siemens NX</li>
-            </ul>
-          </article>
-          <aside class="asset-placeholder-panel" aria-label="Future project assets">
-            <h2>What I may add next</h2>
-            <div class="asset-placeholder-grid">
-              <div><span>Images</span><strong>Concept renders</strong></div>
-              <div><span>Files</span><strong>Proposal PDFs</strong></div>
-              <div><span>Analysis</span><strong>Trade studies</strong></div>
-              <div><span>Reviews</span><strong>Panel materials</strong></div>
-            </div>
-          </aside>
-        </div>
-      </section>
-    </main>
+    <main id="main" class="hdq-case">
+<section class="page-hero">
+<div class="section-inner">
+<a class="breadcrumb" href="../projects.html">Projects</a><p class="eyebrow">
+NASA L'SPACE NPWEE / Student Proposal</p>
+<h1>
+SHIELDS Heat-Shield Concept</h1>
+<p>
+A re-entry heat-shield concept that pairs layered protection with active cooling. My focus was turning the team's idea into a defined design and a credible test plan.</p>
+</div>
+</section>
+<div class="section-inner">
+<dl class="hdq-metrics" aria-label="Project at a glance">
+<div>
+<dt>Team</dt><dd>10 <span>students</span></dd></div>
+<div>
+<dt>Concept tile diameter</dt><dd>6 <span>in</span></dd></div>
+<div>
+<dt>Concept tile thickness</dt><dd>2 <span>in</span></dd></div>
+<div>
+<dt>Proposed workplan</dt><dd>12 <span>months</span></dd></div>
+</dl>
+<nav class="hdq-contents" aria-label="Case study sections">
+<a href="#overview">Overview</a><a href="#tile-design">Tile design</a><a href="#tradeoffs">Tradeoffs</a><a href="#verification">Verification</a></nav>
+</div>
+<section class="section section-white" id="overview">
+<div class="section-inner">
+<div class="hdq-split">
+<div>
+<p class="eyebrow">
+01 / overview</p>
+<h2>
+Two approaches to managing heat.</h2>
+</div>
+<div class="hdq-prose">
+<p>
+SHIELDS stands for Synergistic Heat Infused External Layered Defense System. Our student team proposed combining a layered protective tile with an internal coolant circuit for spacecraft re-entry.</p>
+<p>
+I served as Design Lead, with systems-engineering responsibilities connecting the concept, material choices, and verification approach. The team used Siemens NX to develop the tile geometry and communicate how its layers fit together.</p>
+<p>
+This work was a proposal developed through NASA L'SPACE NPWEE. It is not a NASA flight system, and the proposal alone does not establish funding, thermal performance, or flight readiness.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="section section-light" id="tile-design">
+<div class="section-inner">
+<div class="hdq-split">
+<div>
+<p class="eyebrow">
+02 / tile design</p>
+<h2>
+Make the architecture visible.</h2>
+</div>
+<div class="hdq-prose">
+<p>
+The proposed hexagonal tile is six inches across and two inches thick: a half-inch carbon-fiber outer layer, a one-inch honeycomb core, and a half-inch aramid inner layer. These are concept dimensions, not a qualified thermal-protection stack.</p>
+<p>
+The NX model helped define the layer arrangement before physical testing. Alongside the tile, the system concept includes coolant storage, pumping, and distribution interfaces. Those interfaces introduce their own mass, reliability, and packaging questions.</p>
+</div>
+</div>
+<figure class="hdq-wide-figure">
+<a href="../artifacts/projects/nasa-lspace/tile-assembly.webp" aria-label="Open full-size figure"><img src="../artifacts/projects/nasa-lspace/tile-assembly.webp" alt="Exploded NX drawing of the proposed heat tile with outer layer, wall, honeycomb core, and inner layer" width="1444" height="626" loading="lazy" decoding="async"></a><figcaption>
+First-iteration tile CAD, proposal Figure 2. The material arrangement remains a concept pending analysis and testing.</figcaption>
+</figure>
+</div>
+</section>
+<section class="section section-white" id="tradeoffs">
+<div class="section-inner">
+<div class="hdq-split">
+<div>
+<p class="eyebrow">
+03 / tradeoffs</p>
+<h2>
+Cooling adds capability and complexity.</h2>
+</div>
+<div class="hdq-prose">
+<p>
+Active cooling cannot be assessed separately from the rest of the spacecraft. The coolant must remain compatible with the materials and operating environment, while the circuit must tolerate pressure changes and avoid leaks.</p>
+<p>
+The proposal discusses coolant alternatives and environmental concerns rather than treating the initial selection as settled. Likewise, selecting a material for one desirable property does not establish that the entire tile can survive re-entry.</p>
+</div>
+</div>
+<div class="hdq-table-wrap">
+<table>
+<caption>
+Key questions for the proposed architecture</caption>
+<thead>
+<tr>
+<th scope="col">Design area</th><th scope="col">Concern</th><th scope="col">Evidence needed</th></tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Layered tile</th><td>Thermal response</td><td>Temperature-dependent material data and tests of the assembled stack.</td></tr>
+<tr>
+<th scope="row">Coolant circuit</th><td>Compatibility</td><td>Fluid selection, pressure limits, leakage assessment, and interface definition.</td></tr>
+<tr>
+<th scope="row">Structural integration</th><td>Load transfer</td><td>Mechanical tests and analysis of joints and differential expansion.</td></tr>
+<tr>
+<th scope="row">Complete system</th><td>Added complexity</td><td>A mass, power, and reliability comparison with a passive baseline.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="section section-light" id="verification">
+<div class="section-inner">
+<div class="hdq-split">
+<div>
+<p class="eyebrow">
+04 / verification</p>
+<h2>
+A proposal needs a route to evidence.</h2>
+</div>
+<div class="hdq-prose">
+<p>
+The proposed work moves from architecture and material studies toward prototypes and testing. The document identifies thermal characterization, mechanical testing, and high-heat-flux testing as ways to evaluate the concept; it does not report completed results from those tests.</p>
+<p>
+My main takeaway was how much stronger a design discussion becomes when every claim has a planned check. CAD communicates the arrangement, but requirements, risks, and verification define what would make the arrangement useful.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="section section-white">
+<div class="section-inner">
+<a class="button button-secondary" href="../projects.html">Explore more projects</a></div>
+</section>
+</main>
 
     <footer class="site-footer">
       <div class="footer-inner">
+
         <div>
+
           <strong>Haitish Gandhi</strong>
           <span>Aerospace Engineering Portfolio</span>
         </div>
+
         <nav class="footer-links" aria-label="Footer navigation">
+
           <a href="../index.html">Home</a>
           <a href="../about.html">About</a>
           <a href="../projects.html">Projects</a>
           <a href="../contact.html">Contact</a>
         </nav>
+
       </div>
+
     </footer>
 
     <script src="../scripts/main.js?v=20260902-privacy"></script>
