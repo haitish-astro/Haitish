@@ -22,11 +22,13 @@ Use this folder for source materials that should appear on the portfolio later.
 
 ## Current Live Files
 
-- `photos/profile-photo.png` - profile photo used on the home and about pages.
-- `photos/hero-aerospace.png` - aerospace hero visual used as the page background.
+- `photos/profile-photo.webp` (1148 px) and `photos/profile-photo-640.webp` - profile photo on the home, professional, and about pages.
+- `photos/hero-aerospace.webp` (1774 px) and `photos/hero-aerospace-1100.webp` - aerospace hero visual behind the home and professional heroes.
 
-When adding new material, keep filenames lowercase and descriptive, for example
-`hydroquad-cfd-contour.png` or `nasa-lspace-final-proposal.pdf`.
+Images are WebP for size (the original PNGs were roughly 1.8 MB each). When adding
+new material, keep filenames lowercase and descriptive, for example
+`hydroquad-cfd-contour.webp` or `nasa-lspace-final-proposal.pdf`, and give every
+`<img>` explicit `width`/`height` so the layout does not jump while it loads.
 
 Avoid committing private career documents, direct personal contact details,
 transcripts, IDs, private reports, or proprietary files unless they are meant to

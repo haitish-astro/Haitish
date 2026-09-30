@@ -31,10 +31,11 @@ function renderComments(list,comments){
   for(const c of comments){const row=make("div",undefined,"comment-row");row.append(make("span",`Anonymous / ${commentWhen(c)}`,"micro"),make("p",c.body));list.append(row);}
 }
 async function loadJournal(){
-  const list=document.querySelector("#post-list"),story=document.querySelector("#story");if(!list&&!story)return;
+  const list=document.querySelector("#post-list"),story=document.querySelector("#story"),latest=document.querySelector("#latest-notes");if(!list&&!story&&!latest)return;
   try{
     const response=await fetch("content/posts.json",{cache:"no-cache"});if(!response.ok)throw new Error("Journal unavailable");
     const posts=await response.json();posts.sort((a,b)=>b.date.localeCompare(a.date));
+    if(latest){latest.replaceChildren();const recent=posts.slice(0,3);if(!recent.length){const empty=make("div",undefined,"empty");empty.append(make("h3","A new page, quite literally."),make("p","This journal is just getting started. I'll be sharing stories and small discoveries here soon."));latest.append(empty);}for(const post of recent){const row=make("a",undefined,"post-row");row.href=`story.html?post=${encodeURIComponent(post.id)}`;const copy=make("div");copy.append(make("h3",post.title),make("p",post.excerpt));row.append(make("span",prettyDate(post.date),"micro"),copy,make("span","↗"));latest.append(row);}}
     if(list){const render=()=>{const query=document.querySelector("#post-search").value.trim().toLowerCase();const results=posts.filter(p=>`${p.title} ${p.excerpt} ${p.body}`.toLowerCase().includes(query));list.replaceChildren();if(!results.length){const empty=make("div",undefined,"empty");empty.append(make("h3",query?"No notes found.":"A new page, quite literally."),make("p",query?"Try another word or clear your search.":"This journal is just getting started. I'll be sharing stories and small discoveries here soon."));list.append(empty);}for(const post of results){const row=make("a",undefined,"post-row");row.href=`story.html?post=${encodeURIComponent(post.id)}`;const copy=make("div");copy.append(make("h3",post.title),make("p",post.excerpt));row.append(make("span",prettyDate(post.date),"micro"),copy,make("span","\u2197"));list.append(row);}};document.querySelector("#post-search").addEventListener("input",render);render();}
     if(story){const post=posts.find(p=>p.id===new URLSearchParams(location.search).get("post"));story.replaceChildren();if(!post){story.append(make("h1","This note isn't here."),make("p","It may have moved or hasn't been published yet."));return;}document.title=`${post.title} | Haitish Puran`;const body=make("div",undefined,"story-body");renderBody(post.body,body);if(post.image){const figure=document.createElement("figure");figure.className="story-cover";const img=document.createElement("img");img.src=post.image;img.alt="";img.loading="eager";figure.append(img);story.append(figure);}story.append(make("p",`${prettyDate(post.date)} / ${Math.max(1,Math.ceil(post.body.split(/\s+/).length/220))} MIN READ`,"micro"),make("h1",post.title),make("p",post.excerpt),body);document.querySelector("#conversation").hidden=false;
       const commentsList=document.querySelector("#comments-list");
@@ -63,8 +64,6 @@ async function loadJournal(){
         finally{submitBtn.disabled=false;}
       });
     }
-  }catch{(list||story).replaceChildren(make("p","The journal couldn't load. Please refresh in a moment."));}
+  }catch{(list||story||latest).replaceChildren(make("p","The journal couldn't load. Please refresh in a moment."));}
 }
 loadJournal();
-const motion=matchMedia("(prefers-reduced-motion: reduce)");
-if(matchMedia("(hover: hover) and (pointer: fine)").matches)document.querySelectorAll(".destination").forEach(tile=>{tile.addEventListener("pointermove",event=>{if(motion.matches)return;const r=tile.getBoundingClientRect();tile.style.setProperty("--tilt-x",`${(event.clientX-r.left-r.width/2)/r.width*5}deg`);tile.style.setProperty("--tilt-y",`${-(event.clientY-r.top-r.height/2)/r.height*5}deg`);});tile.addEventListener("pointerleave",()=>{tile.style.removeProperty("--tilt-x");tile.style.removeProperty("--tilt-y");});});
