@@ -23,6 +23,8 @@ Use this folder for source materials that should appear on the portfolio later.
 ## Current Live Files
 
 - `photos/profile-photo.webp` (1148 px) and `photos/profile-photo-640.webp` - profile photo on the home, professional, and about pages.
+- `photos/headshot-suit.webp` (1000 px) and `photos/headshot-suit-640.webp` - tan-suit headshot on the Professional hero card.
+- `photos/everyday-garba.webp` (1000 px) and `photos/everyday-garba-640.webp` - "Garba 2026 Season 4" Spotify-style image in the Everyday page's "On repeat" section.
 - `photos/hero-aerospace.webp` (1774 px) and `photos/hero-aerospace-1100.webp` - aerospace hero visual behind the home and professional heroes.
 
 Images are WebP for size (the original PNGs were roughly 1.8 MB each). When adding

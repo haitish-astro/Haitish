@@ -27,8 +27,8 @@
     <script>(function(){try{var t=localStorage.getItem('haitish-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name=theme-color]');if(m)m.content=t==='light'?'#eaeff7':'#060a12'}catch(e){document.documentElement.setAttribute('data-theme','dark')}})()</script>
     <link rel="preload" href="assets/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/space-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="styles.css?v=20260929">
-    <link rel="stylesheet" href="journal.css?v=20260929">
+    <link rel="stylesheet" href="styles.css?v=20261008">
+    <link rel="stylesheet" href="journal.css?v=20261008">
   </head>
   <body class="page-journal">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -89,6 +89,22 @@
         </div>
       </section>
 
+      <section class="section" aria-labelledby="repeat-heading">
+        <div class="section-inner">
+          <div class="repeat-feature glass">
+            <figure class="feature-photo">
+              <img src="artifacts/photos/everyday-garba-640.webp" srcset="artifacts/photos/everyday-garba-640.webp 640w, artifacts/photos/everyday-garba.webp 1000w" sizes="(max-width: 800px) 86vw, 420px" alt="Haitish in a red vest and festive headband, styled as a Spotify player showing Garba 2026 Season 4" width="1000" height="1000" loading="lazy" decoding="async">
+            </figure>
+            <div class="repeat-copy">
+              <p class="eyebrow">On repeat</p>
+              <h2 id="repeat-heading">Garba season, on a loop.</h2>
+              <p>Some of my favorite nights are spent dancing Garba. This is what the soundtrack to the season looks like &mdash; press play and imagine the dhol.</p>
+              <p class="repeat-track"><span class="repeat-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Garba 2026 &middot; Season 4</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="section section-white" aria-labelledby="entries-heading">
         <div class="section-inner">
           <div class="section-heading section-heading-row">
@@ -118,7 +134,7 @@
       </div>
     </footer>
 
-    <script src="scripts/journal.js?v=20260929" defer></script>
-    <script src="scripts/main.js?v=20260929" defer></script>
+    <script src="scripts/journal.js?v=20261008" defer></script>
+    <script src="scripts/main.js?v=20261008" defer></script>
   </body>
 </html>

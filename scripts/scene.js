@@ -146,7 +146,8 @@ export function mountScene(host) {
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 200);
-  camera.position.set(0, 0, 11);
+  const BASE_Z = 11;
+  camera.position.set(0, 0, BASE_Z);
 
   /* ----- starfield + dust ----- */
   const starMaterial = pointMaterial({ scale: 46, twinkle: 1 });
@@ -294,6 +295,7 @@ export function mountScene(host) {
   const tmp = new THREE.Vector3();
   const tmpDir = new THREE.Vector3();
   let unitsPerPx = 0.01;
+  let baseScale = 1;
   let width = 1;
   let height = 1;
 
@@ -304,7 +306,7 @@ export function mountScene(host) {
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    unitsPerPx = (2 * Math.tan((camera.fov * Math.PI) / 360) * camera.position.z) / height;
+    unitsPerPx = (2 * Math.tan((camera.fov * Math.PI) / 360) * BASE_Z) / height;
 
     let cx = 0.58;
     let cy = 0.05;
@@ -321,11 +323,16 @@ export function mountScene(host) {
       cx = width > 900 ? 0.55 : 0.2;
       cy = 0.1;
     }
+    /* solve against the resting camera, not whatever the entrance flight is doing */
+    camera.position.set(0, 0, BASE_Z);
+    camera.lookAt(0, 0, 0);
+    camera.updateMatrixWorld(true);
     tmp.set(cx, cy, 0.5).unproject(camera);
     tmpDir.copy(tmp).sub(camera.position).normalize();
     const t = -camera.position.z / tmpDir.z;
     core.position.copy(camera.position).addScaledVector(tmpDir, t);
-    core.scale.setScalar(Math.min(Math.max(scale, 0.35), 1.6));
+    baseScale = Math.min(Math.max(scale, 0.35), 1.6);
+    core.scale.setScalar(baseScale);
     core.userData.base = core.position.clone();
   }
 
@@ -340,6 +347,32 @@ export function mountScene(host) {
     pointer.ty = ((event.clientY - hb.top) / hb.height) * 2 - 1;
   }
   section.addEventListener("pointermove", onPointerMove);
+
+  /* ----- entrance: the camera pulls in from deep space once the intro curtain opens ----- */
+  const FLY_SECONDS = 2.6;
+  const gated = document.documentElement.classList.contains("intro-pending");
+  /* null = waiting for the intro, -1 = no flight, otherwise the scene time the flight began */
+  let flyStart = orbitMode && !reduced.matches ? (gated ? null : 0) : -1;
+  window.addEventListener(
+    "intro:reveal",
+    () => {
+      if (flyStart === null) {
+        flyStart = time;
+      }
+    },
+    { once: true }
+  );
+
+  function flight() {
+    if (flyStart === -1) {
+      return 1;
+    }
+    if (flyStart === null) {
+      return 0;
+    }
+    const t = Math.min(Math.max((time - flyStart) / FLY_SECONDS, 0), 1);
+    return 1 - Math.pow(1 - t, 4);
+  }
 
   /* ----- frame loop ----- */
   const uniforms = [starMaterial, dustMaterial, bodyMaterial, halo.material].map((m) => m.uniforms);
@@ -430,7 +463,10 @@ export function mountScene(host) {
     });
     placeMarker(((time * 0.11) % 1.25) - 0.05);
 
-    core.rotation.y = time * 0.05 + pointer.x * 0.35;
+    const lift = 1 - flight();
+    core.scale.setScalar(baseScale * (1 - 0.45 * lift));
+
+    core.rotation.y = time * 0.05 + pointer.x * 0.35 + lift * 2.2;
     core.rotation.x = -pointer.y * 0.22 + scrollTilt;
     wire.rotation.y = time * 0.12;
     wire.rotation.x = time * 0.05;
@@ -442,6 +478,7 @@ export function mountScene(host) {
     dust.position.y = pointer.y * 0.3;
     camera.position.x = pointer.x * 0.25;
     camera.position.y = -pointer.y * 0.18;
+    camera.position.z = BASE_Z + lift * 5.5;
     camera.lookAt(0, 0, 0);
 
     uniforms.forEach((u) => {

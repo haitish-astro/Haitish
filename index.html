@@ -25,13 +25,27 @@
     <link rel="icon" type="image/png" sizes="512x512" href="assets/haitish-signature-icon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
     <script>(function(){try{var t=localStorage.getItem('haitish-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name=theme-color]');if(m)m.content=t==='light'?'#eaeff7':'#060a12'}catch(e){document.documentElement.setAttribute('data-theme','dark')}})()</script>
+    <script>(function(){try{var d=document.documentElement,seen=false;try{seen=!!sessionStorage.getItem('haitish-intro')}catch(e){}var force=location.search.indexOf('intro=1')>-1,rm=matchMedia('(prefers-reduced-motion: reduce)').matches,sd=navigator.connection&&navigator.connection.saveData;if((force||(!seen&&!location.hash))&&!rm&&!sd){d.classList.add('intro-pending','intro-active');setTimeout(function(){d.classList.remove('intro-pending','intro-active','intro-opening')},7000)}}catch(e){}})()</script>
     <link rel="preload" href="assets/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/space-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="styles.css?v=20260929">
-    <link rel="stylesheet" href="journal.css?v=20260929">
+    <link rel="stylesheet" href="styles.css?v=20261008">
+    <link rel="stylesheet" href="journal.css?v=20261008">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Haitish Gandhi","url":"https://www.haitish.com/","jobTitle":"Aerospace Engineer","description":"Aerospace engineer focused on systems engineering, research, and flight-informed design.","affiliation":{"@type":"CollegeOrUniversity","name":"Embry-Riddle Aeronautical University"},"knowsAbout":["Systems engineering","Guidance, navigation, and control","UAV design","Avionics verification and validation","Computational fluid dynamics"]}</script>
   </head>
   <body>
+    <div class="intro" id="intro" aria-hidden="true">
+      <div class="intro-panel intro-panel-top"></div>
+      <div class="intro-panel intro-panel-bottom"></div>
+      <div class="intro-center">
+        <p class="intro-kicker">Portfolio &middot; 2026</p>
+        <p class="intro-name">Haitish Gandhi</p>
+        <div class="intro-rule"></div>
+        <p class="intro-roles">Aerospace &middot; Systems &middot; Flight</p>
+      </div>
+      <p class="intro-hint">Click anywhere to skip</p>
+      <div class="intro-bar"></div>
+    </div>
+
     <a class="skip-link" href="#main">Skip to content</a>
 
     <div class="scroll-progress" aria-hidden="true"></div>
@@ -76,7 +90,7 @@
         <div class="hero-content">
           <div class="hero-copy-block">
             <p class="eyebrow">Engineer. Creator. Always curious.</p>
-            <h1>Hi, I'm <span class="accent">Haitish</span>.</h1>
+            <h1>Hi, I'm <span class="accent">Haitish.</span></h1>
             <p class="hero-copy">I work on things that fly.<br>Here, there's room for everything else too.</p>
             <div class="hero-actions">
               <a class="button button-primary" href="professional.html">Explore my work <span class="arrow" aria-hidden="true">&#8599;</span></a>
@@ -85,7 +99,7 @@
             <div class="hero-chips" aria-label="Highlights">
               <span class="chip"><i></i>Aerospace engineering</span>
               <span class="chip"><i></i>Published research</span>
-              <span class="chip"><i></i>Flight-trained</span>
+              <span class="chip"><i></i>Private pilot</span>
             </div>
           </div>
           <figure class="hero-profile">
@@ -198,7 +212,7 @@
       </div>
     </footer>
 
-    <script src="scripts/journal.js?v=20260929" defer></script>
-    <script src="scripts/main.js?v=20260929" defer></script>
+    <script src="scripts/journal.js?v=20261008" defer></script>
+    <script src="scripts/main.js?v=20261008" defer></script>
   </body>
 </html>

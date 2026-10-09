@@ -11,6 +11,90 @@
 
   root.classList.add("js");
 
+  /* ---------- Entrance orchestration ----------
+     Everything that animates in on arrival (hero words, portrait reveal, the 3D
+     fly-in) waits in this queue until the intro curtain has opened — or, when
+     there is no intro, until fonts have settled. */
+  let entranceReleased = false;
+  const entranceQueue = [];
+  const onEntrance = (fn) => {
+    if (entranceReleased) {
+      fn();
+    } else {
+      entranceQueue.push(fn);
+    }
+  };
+  const releaseEntrance = () => {
+    entranceReleased = true;
+    entranceQueue.splice(0).forEach((fn) => fn());
+  };
+
+  const splitChars = (el) => {
+    const text = el.textContent.trim();
+    el.textContent = "";
+    [...text].forEach((char, index) => {
+      const span = document.createElement("span");
+      span.className = char === " " ? "ch ch-space" : "ch";
+      span.style.setProperty("--i", String(index));
+      span.textContent = char === " " ? " " : char;
+      el.append(span);
+    });
+  };
+
+  const intro = document.getElementById("intro");
+  const introActive = Boolean(intro) && root.classList.contains("intro-active");
+
+  if (introActive) {
+    const name = intro.querySelector(".intro-name");
+    if (name) {
+      splitChars(name);
+    }
+    root.classList.add("intro-run");
+
+    const timers = [];
+    let revealed = false;
+    let ended = false;
+    const skipEvents = ["pointerdown", "keydown", "wheel", "touchstart"];
+
+    const end = () => {
+      if (ended) {
+        return;
+      }
+      ended = true;
+      skipEvents.forEach((type) => window.removeEventListener(type, skip));
+      root.classList.remove("intro-pending", "intro-active", "intro-opening", "intro-fast", "intro-run");
+      intro.remove();
+    };
+
+    const reveal = (fast) => {
+      if (revealed) {
+        return;
+      }
+      revealed = true;
+      timers.forEach(window.clearTimeout);
+      if (fast) {
+        root.classList.add("intro-fast");
+      }
+      root.classList.remove("intro-pending");
+      root.classList.add("intro-opening");
+      try {
+        sessionStorage.setItem("haitish-intro", "1");
+      } catch {
+        /* storage unavailable: the intro may simply play again next visit */
+      }
+      window.dispatchEvent(new Event("intro:reveal"));
+      releaseEntrance();
+      window.setTimeout(end, fast ? 800 : 1500);
+    };
+
+    function skip() {
+      reveal(true);
+    }
+
+    skipEvents.forEach((type) => window.addEventListener(type, skip, { passive: true }));
+    timers.push(window.setTimeout(() => reveal(false), 2700));
+  }
+
   document.querySelectorAll("[data-year]").forEach((el) => {
     el.textContent = String(new Date().getFullYear());
   });
@@ -157,7 +241,8 @@
       ".split-band",
       ".cta-band",
       ".marquee",
-      ".photo-pair figure"
+      ".photo-pair figure",
+      ".repeat-feature"
     ].join(", ")
   );
 
@@ -286,6 +371,145 @@
     });
   }
 
+  /* ---------- Animated headings (words rise out of a mask) ---------- */
+  const splitWords = (el) => {
+    let index = 0;
+    const walk = (node) => {
+      [...node.childNodes].forEach((child) => {
+        if (child.nodeType === Node.TEXT_NODE) {
+          const fragment = document.createDocumentFragment();
+          child.textContent.split(/(\s+)/).forEach((part) => {
+            if (!part) {
+              return;
+            }
+            if (/^\s+$/.test(part)) {
+              fragment.append(document.createTextNode(" "));
+              return;
+            }
+            const outer = document.createElement("span");
+            outer.className = "w";
+            const inner = document.createElement("span");
+            inner.className = "wi";
+            inner.style.setProperty("--wi", String(index));
+            index += 1;
+            inner.textContent = part;
+            outer.append(inner);
+            fragment.append(outer);
+          });
+          child.replaceWith(fragment);
+        } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName !== "BR") {
+          walk(child);
+        }
+      });
+    };
+    walk(el);
+
+    /* keep trailing punctuation glued to the word it follows (e.g. "title" + ".") */
+    const words = [...el.querySelectorAll(".w")];
+    words.slice(1).forEach((word, i) => {
+      const gap = document.createRange();
+      gap.setStartAfter(words[i]);
+      gap.setEndBefore(word);
+      if (gap.toString() === "") {
+        word.before(document.createTextNode("⁠"));
+      }
+    });
+
+    el.classList.add("is-split");
+  };
+
+  if (!motionQuery.matches) {
+    const headings = document.querySelectorAll(
+      ".hero h1, .page-hero h1, .section-heading h2, .cta-band h2, .split-band h2, [data-split]"
+    );
+    const inView = "IntersectionObserver" in window
+      ? new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-in");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.4, rootMargin: "0px 0px -6% 0px" }
+        )
+      : null;
+
+    headings.forEach((heading) => {
+      splitWords(heading);
+      if (heading.closest(".hero, .page-hero")) {
+        onEntrance(() => {
+          void heading.offsetWidth; /* commit the hidden state so the transition has a start */
+          heading.classList.add("is-in");
+        });
+      } else if (inView) {
+        inView.observe(heading);
+      } else {
+        heading.classList.add("is-in");
+      }
+    });
+  }
+
+  /* ---------- Images unveil as they scroll in ---------- */
+  if (!motionQuery.matches && "IntersectionObserver" in window) {
+    /* Observe each image's parent: an image that is fully clipped away never
+       reports as intersecting, so it could never trigger its own reveal. */
+    const unveilTargets = new Map();
+    const unveil = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            (unveilTargets.get(entry.target) || []).forEach((img) => img.classList.add("is-visible"));
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -4% 0px" }
+    );
+    document
+      .querySelectorAll(
+        ".hero-profile img, .profile-panel img, .project-media img, .photo-pair img, .feature-photo img"
+      )
+      .forEach((img) => {
+        img.classList.add("img-reveal");
+        const host = img.parentElement;
+        unveilTargets.set(host, [...(unveilTargets.get(host) || []), img]);
+        onEntrance(() => unveil.observe(host));
+      });
+  }
+
+  /* ---------- Hero spotlight + magnetic buttons (fine pointers only) ---------- */
+  if (!motionQuery.matches && finePointer.matches) {
+    document.querySelectorAll(".hero, .page-hero").forEach((hero) => {
+      const spot = document.createElement("div");
+      spot.className = "hero-spot";
+      spot.setAttribute("aria-hidden", "true");
+      hero.append(spot);
+      hero.addEventListener("pointermove", (event) => {
+        const rect = hero.getBoundingClientRect();
+        spot.style.setProperty("--hx", `${(event.clientX - rect.left).toFixed(0)}px`);
+        spot.style.setProperty("--hy", `${(event.clientY - rect.top).toFixed(0)}px`);
+        spot.classList.add("is-on");
+      });
+      hero.addEventListener("pointerleave", () => spot.classList.remove("is-on"));
+    });
+
+    document.querySelectorAll(".hero-actions .button, .cta-band .button, .contact-list .button").forEach((button) => {
+      button.addEventListener("pointermove", (event) => {
+        const rect = button.getBoundingClientRect();
+        const dx = (event.clientX - (rect.left + rect.width / 2)) / rect.width;
+        const dy = (event.clientY - (rect.top + rect.height / 2)) / rect.height;
+        button.style.setProperty("--mag-x", `${(dx * 14).toFixed(1)}px`);
+        button.style.setProperty("--mag-y", `${(dy * 10).toFixed(1)}px`);
+      });
+      button.addEventListener("pointerleave", () => {
+        button.style.removeProperty("--mag-x");
+        button.style.removeProperty("--mag-y");
+      });
+    });
+  }
+
   /* ---------- 3D scene (lazy, optional) ---------- */
   const sceneHost = document.querySelector(".hero-canvas[data-scene]");
 
@@ -313,5 +537,11 @@
     } else {
       window.setTimeout(start, 200);
     }
+  }
+
+  /* With no intro, let web fonts settle (briefly) so headings animate in with the right glyphs. */
+  if (!introActive) {
+    const settle = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+    Promise.race([settle, new Promise((resolve) => window.setTimeout(resolve, 600))]).then(releaseEntrance);
   }
 })();
