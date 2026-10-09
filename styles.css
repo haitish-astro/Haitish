@@ -818,7 +818,7 @@ p {
   display: flex;
   align-items: center;
   min-height: max(100svh, 700px);
-  padding: calc(var(--header-h) + 2rem) 0 6.5rem;
+  padding: calc(var(--header-h) + 2rem) 0 8.5rem;
 }
 
 .page-hero {
@@ -1015,7 +1015,7 @@ p {
 
 .scroll-cue {
   position: absolute;
-  bottom: 2rem;
+  bottom: 4.75rem;
   left: 50%;
   z-index: 2;
   display: grid;
@@ -2092,27 +2092,29 @@ html.intro-active body {
     radial-gradient(40% 60% at 12% 100%, rgba(74, 130, 255, 0.16), transparent 70%),
     #060a12;
   background-size: 100% 200%;
-  transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1);
+  transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1), border-color 400ms ease;
   will-change: transform;
 }
 
 .intro-panel-top {
   top: 0;
-  border-bottom: 1px solid rgba(255, 150, 70, 0.45);
+  border-bottom: 1px solid transparent;
   background-position: 0 0;
 }
 
 .intro-panel-bottom {
   bottom: 0;
-  border-top: 1px solid rgba(255, 150, 70, 0.45);
+  border-top: 1px solid transparent;
   background-position: 0 100%;
 }
 
 .intro-opening .intro-panel-top {
+  border-bottom-color: rgba(255, 150, 70, 0.55);
   transform: translateY(-101%);
 }
 
 .intro-opening .intro-panel-bottom {
+  border-top-color: rgba(255, 150, 70, 0.55);
   transform: translateY(101%);
 }
 
@@ -2238,8 +2240,8 @@ html.intro-active body {
 
 .intro-opening .intro-bar,
 .intro-opening .intro-hint {
+  animation: none;
   opacity: 0;
-  transition: opacity 300ms ease;
 }
 
 .intro-fast .intro-panel {
@@ -2420,6 +2422,42 @@ html.intro-active body {
   }
 }
 
+.photo-pair-even {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.photo-pair-even img {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.pub-feature {
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  margin-top: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.pub-feature .feature-photo img {
+  aspect-ratio: 3 / 4;
+}
+
+.pub-feature .repeat-copy h3 {
+  margin-top: 0.6rem;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  line-height: 1.12;
+}
+
+.pub-feature .repeat-copy > p:not(.eyebrow) {
+  max-width: 46ch;
+  margin-top: 0.9rem;
+  color: var(--text-2);
+}
+
+@media (max-width: 800px) {
+  .pub-feature {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1080px) {
   .feature-grid {
@@ -2489,7 +2527,7 @@ html.intro-active body {
 
   .hero {
     min-height: 0;
-    padding-bottom: 7rem;
+    padding-bottom: 8.5rem;
   }
 
   .hero-content,
@@ -2620,6 +2658,28 @@ html.intro-active body {
 
   .timeline-card::before {
     left: -1.6rem;
+  }
+}
+
+/* Dark theme: let the hero melt into the page glow instead of ending on a hard edge. */
+:root:not([data-theme="light"]) .hero-bg,
+:root:not([data-theme="light"]) .hero::before {
+  -webkit-mask-image: linear-gradient(180deg, #000 74%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 74%, transparent 100%);
+}
+
+/* Light theme: the quick-nav straddles the dark hero and the light page, so keep it solid. */
+:root[data-theme="light"] .quick-nav-grid {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.97), rgba(243, 247, 252, 0.94));
+}
+
+.scroll-cue {
+  opacity: calc(1 - var(--scroll-y, 0) / 140);
+}
+
+@media (max-width: 900px) {
+  .scroll-cue {
+    display: none;
   }
 }
 

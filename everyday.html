@@ -27,8 +27,8 @@
     <script>(function(){try{var t=localStorage.getItem('haitish-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name=theme-color]');if(m)m.content=t==='light'?'#eaeff7':'#060a12'}catch(e){document.documentElement.setAttribute('data-theme','dark')}})()</script>
     <link rel="preload" href="assets/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/space-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="styles.css?v=20261008">
-    <link rel="stylesheet" href="journal.css?v=20261008">
+    <link rel="stylesheet" href="styles.css?v=20261009">
+    <link rel="stylesheet" href="journal.css?v=20261009">
   </head>
   <body class="page-journal">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -75,15 +75,15 @@
 
       <section class="section" aria-labelledby="moments-heading">
         <div class="section-inner">
-          <h2 id="moments-heading">A little time outside.</h2>
-          <div class="photo-pair">
+          <h2 id="moments-heading">A few moments off the clock.</h2>
+          <div class="photo-pair photo-pair-even">
             <figure>
-              <img src="artifacts/photos/outdoors.webp" alt="Haitish beside a wooden shelter overlooking green fields" width="1400" height="1050" loading="lazy" decoding="async">
+              <img src="artifacts/photos/everyday-shelter-640.webp" srcset="artifacts/photos/everyday-shelter-640.webp 640w, artifacts/photos/everyday-shelter.webp 1000w" sizes="(max-width: 800px) 90vw, 560px" alt="Haitish in sunglasses and white linen leaning on a wooden shelter beside a green field" width="1000" height="1186" style="object-position: 68% 42%" loading="lazy" decoding="async">
               <figcaption>A slower afternoon.</figcaption>
             </figure>
             <figure>
-              <img src="artifacts/photos/garden-walk.webp" alt="Haitish walking beneath a wooden garden arch" width="1050" height="1400" loading="lazy" decoding="async">
-              <figcaption>Taking the long way.</figcaption>
+              <img src="artifacts/photos/everyday-cafe-640.webp" srcset="artifacts/photos/everyday-cafe-640.webp 640w, artifacts/photos/everyday-cafe.webp 1000w" sizes="(max-width: 800px) 90vw, 560px" alt="Black-and-white portrait of Haitish seated at a marble table, looking off to the side" width="1000" height="1290" style="object-position: 50% 30%" loading="lazy" decoding="async">
+              <figcaption>A quiet moment between stops.</figcaption>
             </figure>
           </div>
         </div>
@@ -134,7 +134,7 @@
       </div>
     </footer>
 
-    <script src="scripts/journal.js?v=20261008" defer></script>
-    <script src="scripts/main.js?v=20261008" defer></script>
+    <script src="scripts/journal.js?v=20261009" defer></script>
+    <script src="scripts/main.js?v=20261009" defer></script>
   </body>
 </html>
